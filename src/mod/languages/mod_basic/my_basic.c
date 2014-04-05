@@ -1381,7 +1381,6 @@ unsigned int _ht_remove(_ht_node_t* ht, void* key) {
 
 	mb_assert(ht && key);
 
-	bucket = _ht_find(ht, key);
 	hash_code = ht->hash(ht, key);
 	bucket = ht->array[hash_code];
 	result = _ls_try_remove(bucket, key, _ls_cmp_extra);
