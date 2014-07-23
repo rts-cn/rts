@@ -477,6 +477,7 @@ struct ftdm_channel {
 	int32_t rxdrops;
 	ftdm_usrmsg_t *usrmsg;
 	ftdm_time_t last_state_change_time;
+	ftdm_time_t last_release_time;
 };
 
 struct ftdm_span {
@@ -513,8 +514,13 @@ struct ftdm_span {
 	ftdm_span_stop_t stop;
 	ftdm_channel_sig_read_t sig_read;
 	ftdm_channel_sig_write_t sig_write;
+<<<<<<< HEAD
 	ftdm_channel_sig_dtmf_t sig_queue_dtmf;
 	ftdm_channel_sig_dtmf_t sig_send_dtmf;
+=======
+	ftdm_channel_sig_dtmf_t sig_dtmf;
+	uint32_t sig_release_guard_time_ms;
+>>>>>>> b80cdd45d5 (freetdm: Added release guard time configuration)
 	ftdm_channel_state_processor_t state_processor; /*!< This guy is called whenever state processing is required */
 	void *io_data; /*!< Private I/O data per span. Do not touch unless you are an I/O module */
 	char *type;
