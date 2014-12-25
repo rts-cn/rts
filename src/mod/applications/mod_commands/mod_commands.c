@@ -1913,21 +1913,18 @@ SWITCH_STANDARD_API(cond_function)
 			}
 		}
 		if (!*expr) {
-			stream->write_function(stream, "-ERR while looking for closing quote near < %s > \n", a);
-			goto end;
+			goto error;
 		}
 		*expr++ = '\0';
 
 		if (!switch_isspace(*expr)) {
-			stream->write_function(stream, "-ERR, Syntax error near  < %s > \n", expr);
-			goto end;
+			goto error;
 		}
 	} else {
 		if ((expr = strchr(a, ' '))) {
 			*expr++ = '\0';
 		} else {
-			stream->write_function(stream, "-ERR, Syntax error near < %s > \n", a);
-			goto end;
+			goto error;
 		}
 	}
 
@@ -1941,7 +1938,7 @@ SWITCH_STANDARD_API(cond_function)
 			case '=':
 				goto operator;
 			default:
-				expr++;
+				goto error;
 				break;
 		}
 	}
@@ -1986,8 +1983,7 @@ operator:
 			break;
 
 		default:
-			stream->write_function(stream, "-ERR, Syntax error near  %s  invalid conditional operator.\n", expr);
-			goto end;
+			goto error;
 	}
 
 	if (o) {
@@ -2010,37 +2006,32 @@ operator:
 				}
 			}
 			if (!*expr) {
-				stream->write_function(stream, "-ERR while looking for closing quote near < %s >!\n", b);
-				goto end;
+				goto error;
 			}
 			*expr++ = '\0';
 
 			if (!switch_isspace(*expr)) {
-				stream->write_function(stream, "-ERR, Syntax error near  < %s > \n", expr);
-				goto end;
+				goto error;
 			}
 		} else {
 			if ((expr = strchr(b, ' '))) {
 				*expr++ = '\0';
 			} else {
-				stream->write_function(stream, "-ERR, Syntax error near < %s > \n", b);
-				goto end;
+				goto error;
 			}
 		}
 
 		while (switch_isspace(*expr)) expr++;
 
 		if (*expr != '?') {
-			stream->write_function(stream, "-ERR, Syntax error near < %s > no expression found.\n", expr);
-			goto end;
+			goto error;
 		}
 
 		*expr = ':';
 
 		argc = switch_separate_string(expr, ':', argv, (sizeof(argv) / sizeof(argv[0])));
 		if (!(argc >= 2 && argc <= 3)) {
-			stream->write_function(stream, "-ERR, Syntax error near < %s > , Invalid expression.\n", ++expr);
-			goto end;
+			goto error;
 		}
 
 		s_a = a;
