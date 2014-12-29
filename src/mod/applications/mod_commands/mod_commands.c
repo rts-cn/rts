@@ -1930,7 +1930,7 @@ SWITCH_STANDARD_API(cond_function)
 
 	while (switch_isspace(*expr)) expr++;
 
-	switch (*expr) {
+	switch(*expr) {
 	case '!':
 	case '<':
 	case '>':
@@ -1940,7 +1940,7 @@ SWITCH_STANDARD_API(cond_function)
 		goto error;
 	}
 
-operator:
+  operator:
 
 	switch (*expr) {
 	case '!':
@@ -2078,9 +2078,9 @@ operator:
 		goto end;
 	}
 
-error:
+  error:
 	stream->write_function(stream, "-ERR");
-end:
+  end:
 
 	switch_safe_free(mydata);
 	return SWITCH_STATUS_SUCCESS;
