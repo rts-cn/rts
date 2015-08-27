@@ -189,7 +189,6 @@
           value: '',
         }).then(function(exten) {
           if (exten) {
-            console.log(arguments);
             verto.data.conf.transfer(memberID, exten);
           }
         });
