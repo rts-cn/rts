@@ -940,6 +940,15 @@ vertoService.service('verto', ['$rootScope', '$cookieStore', '$location', 'stora
       sendConferenceChat: function(message) {
         data.conf.sendChat(message, "message");
       },
+      setCanvasIn: function(memberID, canvasID) {
+        data.conf.modCommand('vid-canvas', memberID, canvasID);
+      },
+      setCanvasOut: function(memberID, canvasID) {
+        data.conf.modCommand('vid-watching-canvas', memberID, canvasID);
+      },
+      setLayer: function(memberID, canvasID) {
+        data.conf.modCommand('vid-layer', memberID, canvasID);
+      },
       /*
       * Method is used to set a member's resevartion Id.
       */
