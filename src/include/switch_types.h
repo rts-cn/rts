@@ -1378,6 +1378,7 @@ typedef enum {
 	CC_QUEUEABLE_DTMF_DELAY,
 	CC_IO_OVERRIDE,
 	CC_RTP_RTT,
+	CC_MSRP,
 	/* WARNING: DO NOT ADD ANY FLAGS BELOW THIS LINE */
 	CC_FLAG_MAX
 } switch_channel_cap_t;
@@ -1530,6 +1531,7 @@ typedef enum {
 	CF_TEXT_ECHO,
 	CF_TEXT_ACTIVE,
 	CF_TEXT_IDLE,
+	CF_MSRP,
 	/* WARNING: DO NOT ADD ANY FLAGS BELOW THIS LINE */
 	/* IF YOU ADD NEW ONES CHECK IF THEY SHOULD PERSIST OR ZERO THEM IN switch_core_session.c switch_core_session_request_xml() */
 	CF_FLAG_MAX
