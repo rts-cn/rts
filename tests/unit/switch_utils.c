@@ -93,6 +93,42 @@ FST_TEST_BEGIN(test_sanitize_number)
 }
 FST_TEST_END()
 
+FST_TEST_BEGIN(jwt)
+{
+	char *token = "token";
+	char *secret = "secret";
+	cJSON *payload = switch_jwt_verify(secret, token);
+	fst_check(payload == NULL);
+
+	token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHBpcmVzIjoxNTg5NzA2OTUyfQ.O0Aa8RSoQ4DwEpl8FyKbcbKUadXePAPleJqciwjfFXw";
+	payload = switch_jwt_verify("invalid_secret", token);
+	fst_check(payload == NULL);
+
+	payload = switch_jwt_verify(secret, token);
+	fst_requires(payload);
+	cJSON *user_id = cJSON_GetObjectItem(payload, "user_id");
+	fst_check(user_id && user_id->type == cJSON_Number && user_id->valueint == 1);
+
+	char *str_payload = cJSON_Print(payload);
+	cJSON_Delete(payload);
+
+	fst_requires(str_payload);
+	char *signed_token = switch_jwt_sign(secret, (const uint8_t *)str_payload, strlen(str_payload));
+	free(str_payload);
+	str_payload = NULL;
+	fst_requires(signed_token);
+	switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_INFO, "signed token: %s\n", signed_token);
+	payload = switch_jwt_verify(secret, signed_token);
+	free(signed_token);
+	signed_token = NULL;
+	fst_requires(payload);
+	user_id = cJSON_GetObjectItem(payload, "user_id");
+	fst_check(user_id && user_id->type == cJSON_Number && user_id->valueint == 1);
+	cJSON_Delete(payload);
+
+}
+FST_TEST_END()
+
 FST_SUITE_END()
 
 FST_MINCORE_END()

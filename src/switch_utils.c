@@ -55,6 +55,8 @@
 
 #if defined(HAVE_OPENSSL)
 #include <openssl/evp.h>
+#include <openssl/hmac.h>
+#include <openssl/sha.h>
 #endif
 
 #ifdef __GLIBC__
@@ -1095,7 +1097,7 @@ SWITCH_DECLARE(switch_size_t) switch_b64_decode(const char *in, char *out, switc
 
   end:
 
-	op[ol++] = '\0';
+	op[ol+1] = '\0';
 
 	return ol;
 }
@@ -4809,6 +4811,124 @@ cleanup:
 #endif
 done:
 	return status;
+}
+
+#define SHA256_LENGTH 32
+SWITCH_DECLARE(cJSON *) switch_jwt_verify(const char *secret, const char *token)
+{
+	bool ok = false;
+	cJSON *json = NULL;
+	cJSON *payload = NULL;
+	char *out = NULL;
+	unsigned int len = 0;
+	unsigned char signature[SHA256_LENGTH];
+	const char *alg = NULL;
+	const char *typ = NULL;
+	char *header = strdup(token);
+	char *dot;
+
+	switch_assert(header);
+	dot = strchr(header, '.');
+	if (!dot) goto end;
+	*dot = '\0';
+	out = (char *)switch_must_malloc(strlen(header) + 1);
+	len = switch_b64_decode((const char *)header, out, strlen(header) + 1);
+	if (len == 0) goto end;
+	json = cJSON_Parse(out); // header
+	free(out);
+	out = NULL;
+	if (!json) goto end;
+	alg = cJSON_GetObjectCstr(json, "alg");
+	if (!alg || strcmp(alg, "HS256")) goto end;
+	typ = cJSON_GetObjectCstr(json, "typ");
+	if (!typ || strcmp(typ, "JWT")) goto end;
+	cJSON_Delete(json);
+	json = NULL;
+	dot++; // payload
+	dot = strrchr(token, '.');
+	if (!dot) goto end;
+	HMAC(EVP_sha256(), secret, strlen(secret), (unsigned char *)token, dot - token, signature, &len);
+	if (len != SHA256_LENGTH) goto end;
+	dot++; // signature
+	out = (char *)switch_must_malloc(strlen(dot) + 1);
+	len = switch_b64_decode((const char *)dot, out, strlen(dot) + 1);
+	if (len != SHA256_LENGTH) goto end;
+	ok = !memcmp(out, signature, len);
+	free(out);
+	out = NULL;
+
+	if (ok) {
+		char *p = strchr(token, '.');
+
+		if (p) {
+			p++;
+			out = (char *)switch_must_malloc(strlen(p));
+			len = switch_b64_decode((const char *)p, out, strlen(p));
+			payload = cJSON_Parse(out);
+			free(out);
+			out = NULL;
+		}
+	}
+
+end:
+	switch_safe_free(header);
+	switch_safe_free(out);
+	if (json) cJSON_Delete(json);
+
+	return payload;
+}
+
+SWITCH_DECLARE(char *) switch_jwt_sign(const char *secret, const uint8_t *payload, switch_size_t size)
+{
+	cJSON *json;
+	switch_size_t need;
+	char *header;
+	uint8_t *bheader;
+	uint8_t *bpayload;
+	char *to_sign;
+	unsigned int len = 0;
+	unsigned char signature[SHA256_LENGTH];
+	unsigned char *bsignature;
+	char *result = NULL;
+
+	if (!secret || !payload) return NULL;
+
+	json = cJSON_CreateObject();
+	switch_assert(json);
+	cJSON_AddStringToObject(json, "alg", "HS256");
+	cJSON_AddStringToObject(json, "typ", "JWT");
+	header = cJSON_Print(json);
+	cJSON_Delete(json);
+	if (!header) return NULL;
+
+	need = ((strlen(header) + 3 - 1) / 3) * 4 + 1; // with extra NULL
+	bheader = (uint8_t *)switch_must_malloc(need);
+	switch_b64_encode((unsigned char *)header, strlen(header), bheader, need);
+	free(header);
+	header = NULL;
+
+	need = ((size + 3 - 1) / 3) * 4 + 1; // with extra NULL
+	bpayload = (uint8_t *)switch_must_malloc(need);
+	switch_b64_encode((unsigned char *)payload, size, bpayload, need);
+
+	to_sign = switch_mprintf("%s.%s", (char *)bheader, (char *)bpayload);
+	switch_assert(to_sign);
+
+	HMAC(EVP_sha256(), secret, strlen(secret), (unsigned char *)to_sign, strlen(to_sign), signature, &len);
+	switch_assert(len == SHA256_LENGTH);
+	free(to_sign);
+	to_sign = NULL;
+
+	need = ((len + 3 - 1) / 3) * 4 + 1; // with extra NULL
+	bsignature = (uint8_t *)switch_must_malloc(need);
+	switch_b64_encode((unsigned char *)signature, len, bsignature, need);
+	result = switch_mprintf("%s.%s.%s", bheader, bpayload, bsignature);
+
+	free(bheader);
+	free(bpayload);
+	free(bsignature);
+
+	return result;
 }
 
 /* For Emacs:
