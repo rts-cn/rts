@@ -1513,6 +1513,22 @@ SWITCH_DECLARE(unsigned long) switch_getpid(void);
 
 SWITCH_DECLARE(switch_status_t) switch_digest(const char *digest_name, unsigned char **digest, const void *input, switch_size_t inputLen, unsigned int *outputlen);
 SWITCH_DECLARE(switch_status_t) switch_digest_string(const char *digest_name, char **digest_str, const void *input, switch_size_t inputLen, unsigned int *outputlen);
+/**
+ * \param[in] secret the secret string
+ * \param[in] token the jwt token, only alg: HS256 is supported
+ *
+ * \return NULL or payload in cJSON
+**/
+SWITCH_DECLARE(cJSON *) switch_jwt_verify(const char *secret, const char *token);
+
+/**
+ * \param[in] secret the secret string
+ * \param[in] payload the payload
+ * \param[in] size the payload size
+ *
+ * \return NULL or signed token
+**/
+SWITCH_DECLARE(char *) switch_jwt_sign(const char *secret, const uint8_t *payload, switch_size_t size);
 
 SWITCH_DECLARE(char *) switch_must_strdup(const char *_s);
 SWITCH_DECLARE(const char *) switch_memory_usage_stream(switch_stream_handle_t *stream);
