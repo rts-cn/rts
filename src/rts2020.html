@@ -5,15 +5,21 @@
     <meta name="keywords" content="RTS RTS-CN 实时通信解决方案 FreeSWITCH" />
     <meta name="description" content="RTS是一个实时通信解决方案，以FreeSWITCH开源技术为主，配合支持Kamailio、WebRTC等技术，支持企业通信、呼叫中心、视频会议等。"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="//unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-4ZPLezkTZTsojWFhpdFembdzFudphhoOzIunR1wH6g1WQDzCAiPvDyitaK67mp0+" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css"> -->
     <!-- <style src="/rts.css"></style> -->
+    <link rel="icon" type="image/png" href="/img/rts.png">
+    <style>
+        #logo {
+            float: left;
+            width: 32px;
+            z-index: 9999;
+            position: absolute;
+        }
+    </style>
 </head>
 <body>
-    <img src="/img/rts.png"/>
-
-    <br/>
-    <br/>
+    <img id='logo' src="/img/rts.png"/>
     <video id="video" src="http://live.xswitch.cn/live/rts2020.m3u8" controls=true autoplay=true style="width: 100%"/>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <!-- Or if you want a more recent alpha version -->
