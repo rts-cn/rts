@@ -106,6 +106,9 @@ function onMessage(evt) {
         if (!data) return;
         console.log(data.fromDisplay, data.message);
         fly({text: data.fromDisplay + ': ' + data.message});
+        if (data.message.indexOf("/正在播放") == 0) {
+            document.getElementById('now').innerText = data.message;
+        }
     }
 }
 
