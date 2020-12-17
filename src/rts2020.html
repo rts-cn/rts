@@ -19,8 +19,14 @@
     </style>
 </head>
 <body>
-    <img id='logo' src="/img/rts.png"/>
-    <video id="video" src="http://live.xswitch.cn/live/rts2020.m3u8" controls=true autoplay=true style="width: 100%"/>
+    <div id='root'>
+        <img id='logo' src="/img/rts.png"/>
+        <video id="video" src="http://live.xswitch.cn/live/rts2020.m3u8" controls=true autoplay=false style="width: 100%"/>
+    </div>
+    <div>
+        <br/>
+        <button id='ufo' onclick='toggle_ufo()'>弹幕</button>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <!-- Or if you want a more recent alpha version -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/hls.js@alpha"></script> -->
@@ -51,10 +57,16 @@
     </script>
     <br/>
     <br/>
+    <div id='output'></div>
+    <br/>
+    <br/>
 
     鲁ICP备17017005号-2
     <br/>
     版权所有 &copy; 烟台小樱桃网络科技有限公司 2019-2020 邮箱：info@x-y-t.cn
-</body>
 
+    <br/>
+    <br/>
+    <script src="/js/live.js"></script>
+</body>
 </html>
