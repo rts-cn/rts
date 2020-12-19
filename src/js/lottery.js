@@ -149,6 +149,7 @@ function loop() {
 function start() {
 	if (started) return;
 	started = true;
+	document.getElementById('timer').innerText = loops;
 	setTimeout(loop, 1000);
 }
 
