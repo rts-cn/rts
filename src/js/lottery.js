@@ -8,14 +8,14 @@ var pass = "robot!@#";
 var domain = "rts.xswitch.cn"
 var login_user = user + '@' + domain;
 var websocket = null;
-var loops = 6;
+var loops = 60;
 var started = false;
 
 function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
+	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+	  var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+	  return v.toString(16);
+	});
 }
 
 var sessid = uuidv4();
@@ -58,7 +58,7 @@ function sendJSON(data) {
 
 function init() {
 	output = document.getElementById("output");
-    startWebSocket();
+	startWebSocket();
 }
 
 function startWebSocket() {
@@ -75,7 +75,7 @@ function onOpen(evt) {
 }
 
 function onClose(evt) {
-    writeToScreen("DISCONNECTED");
+	writeToScreen("DISCONNECTED");
 }
 
 function onMessage(evt) {
@@ -86,11 +86,11 @@ function onMessage(evt) {
 	if (json.method == "verto.clientReady") {
 		subscribe("conference-chat.3000-rts.xswitch.cn@rts.xswitch.cn");
 	} else if (json.method == "verto.event") {
-        params = json.params
-        if (!params) return;
-        data = params.data;
-        if (!data) return;
-        console.log(data.fromDisplay, data.message);
+		params = json.params
+		if (!params) return;
+		data = params.data;
+		if (!data) return;
+		console.log(data.fromDisplay, data.message);
 
 		if (!started) return;
 
@@ -111,7 +111,7 @@ function onMessage(evt) {
 		}
 
 		update();
-    }
+	}
 }
 
 function getRandomInt(max) {
