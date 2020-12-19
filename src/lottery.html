@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>RTSCon2020</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="RTS RTS-CN 实时通信解决方案 FreeSWITCH" />
+    <meta name="description" content="RTS是一个实时通信解决方案，以FreeSWITCH开源技术为主，配合支持Kamailio、WebRTC等技术，支持企业通信、呼叫中心、视频会议等。"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css"> -->
+    <!-- <style src="/rts.css"></style> -->
+    <link rel="icon" type="image/png" href="/img/rts.png">
+    <style>
+        #logo {
+            float: left;
+            width: 64px;
+            /* z-index: 9999; */
+            /* position: absolute; */
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id='root'>
+        <img id='logo' src="/img/rts.png"/>
+        <div style="font-size: 36px;">
+            <div>RTSCon2020抽奖现场</div>
+        </div>
+    </div>
+    <div style="margin-left: 50px;">
+        参与互动赢大奖 ;)
+        <button id='timer' onclick="start()">开始</button>
+    </div>
+    <div id="lottery">
+    </div>
+    <br/>
+    <br/>
+    <div id='output'></div>
+    <br/>
+    <br/>
+
+    鲁ICP备17017005号-2 FreeSWITCH、WebRTC及腾讯云提供技术支撑
+    <br/>
+    版权所有 &copy; 烟台小樱桃网络科技有限公司 2019-2020 邮箱：info@x-y-t.cn
+
+    <br/>
+    <br/>
+    <script src="/js/lottery.js"></script>
+</body>
+</html>
