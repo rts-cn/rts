@@ -8,7 +8,7 @@ var pass = "robot!@#";
 var domain = "rts.xswitch.cn"
 var login_user = user + '@' + domain;
 var websocket = null;
-var loops = 60;
+var loops = 30;
 var started = false;
 
 function uuidv4() {
@@ -139,7 +139,7 @@ function loop() {
 	if (--loops == 0) {
 		started = false;
 		document.getElementById('timer').innerText = '开始';
-		loops = 60;
+		loops = 30;
 	} else {
 		document.getElementById('timer').innerText = loops;
 		setTimeout(loop, 1000);
