@@ -118,6 +118,9 @@ FST_TEST_BEGIN(jwt)
 {
 	char *token = "token";
 	char *secret = "secret";
+	cJSON *user_id;
+	char *str_payload;
+	char *signed_token;
 	cJSON *payload = switch_jwt_verify(secret, token);
 	fst_check(payload == NULL);
 
@@ -127,14 +130,14 @@ FST_TEST_BEGIN(jwt)
 
 	payload = switch_jwt_verify(secret, token);
 	fst_requires(payload);
-	cJSON *user_id = cJSON_GetObjectItem(payload, "user_id");
+	user_id = cJSON_GetObjectItem(payload, "user_id");
 	fst_check(user_id && user_id->type == cJSON_Number && user_id->valueint == 1);
 
-	char *str_payload = cJSON_Print(payload);
+	str_payload = cJSON_Print(payload);
 	cJSON_Delete(payload);
 
 	fst_requires(str_payload);
-	char *signed_token = switch_jwt_sign(secret, (const uint8_t *)str_payload, strlen(str_payload));
+	signed_token = switch_jwt_sign(secret, (const uint8_t *)str_payload, strlen(str_payload));
 	free(str_payload);
 	str_payload = NULL;
 	fst_requires(signed_token);
