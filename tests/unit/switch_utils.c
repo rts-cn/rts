@@ -80,6 +80,18 @@ FST_TEST_BEGIN(b64)
 }
 FST_TEST_END()
 
+FST_TEST_BEGIN(test_sanitize_number)
+{
+	char number[128];
+
+	switch_set_string(number, "1234@example.com");
+	switch_sanitize_number(number);
+	fst_check_string_equals(number, "1234");
+	switch_set_string(number, "1234%example.com");
+	switch_sanitize_number(number);
+	fst_check_string_equals(number, "1234");
+}
+FST_TEST_END()
 
 FST_SUITE_END()
 
