@@ -4,7 +4,7 @@
 <head>
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700|Poppins:400,400i,500,700,700i&amp;subset=latin-ext" rel="stylesheet">
 <link rel="stylesheet" href="./style.min.css">
-<title>RTS - 实时解决方案</title>
+<title>RTS - Real-Time Solutions</title>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="keywords" content="RTS RTS-CN 实时通信解决方案 FreeSWITCH" />
 <meta name="description" content="RTS是一个实时通信解决方案，以FreeSWITCH开源技术为主，配合支持Kamailio、WebRTC等技术，支持企业通信、呼叫中心、视频会议等。"/>
@@ -19,17 +19,17 @@
     function current_lang() {
         var lang = localStorage.getItem("rts.lang");
         if (!lang) lang = window.navigator.userLanguage || window.navigator.language;
-        if (!lang) lang = "en"
+        if (!lang) lang = "en";
         return lang;
     }
 
-	if (current_lang().substr(0, 2) == 'en') {
-        window.location = '/index-en.html';
+    if (current_lang().substr(0, 2) == 'cn') {
+        window.location = '/';
     }
 
-	function toggleLang() {
-        localStorage.setItem('rts.lang', 'en');
-        window.location = '/index-en.html';
+    function toggleLang() {
+        localStorage.setItem('rts.lang', 'cn');
+        window.location = '/';
 	}
 </script>
 </head>
@@ -42,15 +42,15 @@
 <h1 class="splash"><img src="img/rts.png" width="64px"/></h1>
 
 <p class="splash">
-    RTS是一个以实时音视频通信为主的技术社区，<span style="color:rgb(248, 52, 52)">我们相信科技改变世界</span>
+    RTS is a community about VoIP and RTC, <span style="color:rgb(248, 52, 52)">we beleive technology is changing the world.</span>
     <br/>
     <br/>
     <br/>
-    第二届RTSCon线上技术交流会将于
-    <span style="color: rgb(247, 45, 45)">2021年12月26日9:00-17:00举行</span>
+    The second RTSCon will be held online on
+    <span style="color: rgb(247, 45, 45)">2021-12-26 09:00-17:00</span>
 </p>
-<a id="version-info" onclick="toggleLang();return false;">English</a>
-<a class="button splash" href="https://jinshuju.net/f/BawjFQ">立即报名</a>
+<a id="version-info" onclick="toggleLang();return false;">中文</a>
+<a class="button splash" href="https://jinshuju.net/f/BawjFQ">Register to RTSCon 2021</a>
 </div>
 <header class="row sticky">
 <span class="col-md-1 col-lg-2"></span>
@@ -60,7 +60,7 @@
 <span>&nbsp;RTS</span></a>
 <a class="button col-sm col-md" href="https://github.com/rts-cn/rts/discussions" target="_blank">
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height: 20px; vertical-align: text-top;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-<span>&nbsp;Github讨论区</span></a>
+<span>&nbsp;Github discussions</span></a>
 <a class="button col-sm col-md" href="#rtscon">
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height: 20px; vertical-align: text-top;"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg>
 <span>&nbsp;RTSCon</span></a>
@@ -71,13 +71,10 @@
 <!-- <img src="./responsive.svg" class="feature-image"> -->
 <h2 class="feature-header">Real-Time Solutions</h2><br>
 <p>
-RTS的全称是Real-Time Solutions，即实时解决方案。
+We love Opensource and commercial softwares.
 <br/>
 <br/>
-我们喜欢开源软件的简洁优雅，也喜欢商业软件的庄严大气。我们在探索开源与商业的完美结合，从方法论、思想意识，以及真正的代码实现等各个角度。欢迎加入我们。
-<br/>
-<br/>
-RTS的前身是FreeSWITCH中文社区。随着时代和发展，我们做的事情远远超出了FreeSWITCH本身，因此，我们组建了RTS社区，旨在团结更多的生态伙伴，如Kamailio、OpenSIPS、WebRTC、直播、RTC、Docker、云原生、物联网、国产化、元宇宙、5G新发展及边缘计算等，共同把开源实时通信的应用场景落地并发扬光大。
+RTS was from FreeSWITCH Chinese Community. Over the years, we are doing far beyond FreeSWITCH. Come and join us to talk Kamailio, OpenSIPS, WebRTC, Online Broadcasting, RTC, Docker, Cloud Native, Internet of Things, Metaverse, 5G NR and Edge Computing.
 </p>
 </div>
 </div>
@@ -87,19 +84,18 @@ RTS的前身是FreeSWITCH中文社区。随着时代和发展，我们做的事�
 <!-- <img src="./tailored.svg" class="feature-image"> -->
 <h2 class="feature-header">RTSCon</h2><br>
 <p>
-    RTSCon的前身是FreeSWITCH开发者沙龙。FreeSWITCH开发者沙龙从2012年起每年一届，算起来，今年应该是第10届。
-FreeSWITCH开发者沙龙以FreeSWITCH为中心，交流音视频解决方案，多年来，得到了众多开发者的支持。随着时代的发展，生态建设越来越重要，开源也越来越深入人心，因此，我们更名为RTSCon，希望团结更多的生态伙伴，如Kamailio、OpenSIPS、WebRTC、直播、RTC、Docker、云原生、物联网、国产化、元宇宙、5G新发展及边缘计算等，共同把开源实时通信的应用场景落地并发扬光大。当然，我们虽以开源为主，但也欢迎闭源的产品和解决方案。毕竟，只要对行业、对生态有所贡献，都是好猫。
+    RTSCon was known as FreeSWITCH Developer's Salon. FreeSWITCH Developer's Salon was an anual developer conference started from 2012.
 </p>
 <br/>
 <p style="text-align:center">
-    第二届RTSCon线上技术交流会将于2021年12月26日9:00-17:00举行，<a href="https://jinshuju.net/f/BawjFQ">立即报名</a>或<a href="https://mp.weixin.qq.com/s?__biz=MjM5MzIwMzExMg==&mid=2664616259&idx=1&sn=a0e76e00fbb19290bc9bffce7dd3818c&chksm=bdbce7848acb6e92afe7a2fb929ad5749aacc61e618299acdafc6db94d0450105cf58eff7d85&mpshare=1&scene=1&srcid=1125KRfkLve3t7sZA67sv9vE&sharer_sharetime=1637823373680&sharer_shareid=dd2204b15ec86ce2306ce8926e31179d&version=3.1.20.90367&platform=mac#rd">查看更多说明</a>。
+    RTSCon2021 will be held online at 2021-12-26 09:00-17:00, <a href="https://jinshuju.net/f/BawjFQ">Register Immediately</a> or <a href="https://mp.weixin.qq.com/s?__biz=MjM5MzIwMzExMg==&mid=2664616259&idx=1&sn=a0e76e00fbb19290bc9bffce7dd3818c&chksm=bdbce7848acb6e92afe7a2fb929ad5749aacc61e618299acdafc6db94d0450105cf58eff7d85&mpshare=1&scene=1&srcid=1125KRfkLve3t7sZA67sv9vE&sharer_sharetime=1637823373680&sharer_shareid=dd2204b15ec86ce2306ce8926e31179d&version=3.1.20.90367&platform=mac#rd">Read More...</a>
     <br />
     <br />
-    <a href="https://mp.weixin.qq.com/s/Q0K_AjsOIQODDjfd0kB0YA" target="_blank"/>第一届RTSCon线上技术交流会于2020年12月20日9:00-17:00举行<a href="https://mp.weixin.qq.com/s/iMS0RtM9-t1u1c8ripH1uw"></a>
+    <a href="https://mp.weixin.qq.com/s/Q0K_AjsOIQODDjfd0kB0YA" target="_blank"/>RTSCon2020<a href="https://mp.weixin.qq.com/s/iMS0RtM9-t1u1c8ripH1uw"></a>
 
     <br/>
     <br/>
-    查看<a href="http://www.freeswitch.org.cn/fscnds/index.html">往届沙龙回顾</a>
+    More <a href="http://www.freeswitch.org.cn/fscnds/index.html">History Events</a>
 </p>
 </div>
 </div>
@@ -107,7 +103,7 @@ FreeSWITCH开发者沙龙以FreeSWITCH为中心，交流音视频解决方案，
 <div class="row padded">
     <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
     <!-- <img src="./tailored.svg" class="feature-image"> -->
-    <h2 class="feature-header">FreeSWITCH-CN微信公众号</h2><br>
+    <h2 class="feature-header">FreeSWITCH-CN on Wechat</h2><br>
     <p style="text-align:center">
         <br/>
         <img src="http://www.freeswitch.org.cn/images/qrcode_for_FreeSWITCH-CN-wechat.jpg" width="200px"/>
@@ -120,17 +116,17 @@ FreeSWITCH开发者沙龙以FreeSWITCH为中心，交流音视频解决方案，
 
 <div class="row padded primary-section">
 <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-<h2 class="feature-header">关于FreeSWITCH</h2><br>
+<h2 class="feature-header">About FreeSWITCH</h2><br>
 <p style="text-align:center;">
-    FreeSWITCH是一个开源软交换系统和媒体引擎。FreeSWITCH中文社区是专门讨论FreeSWITCH的社区。
+    FreeSWITCH is an Opensource Soft-Switch and Media Engine. There's also a FreeSWITCH Chinese Community.
 </p>
-<p style="text-align:center;"><a href="http://www.freeswitch.org.cn" class="button">前往FreeSWITCH中文社区</a></p>
+<p style="text-align:center;"><a href="http://www.freeswitch.org.cn" class="button">Go to FreeSWITCH Chinese Community</a></p>
 <a href="https://freeswitch.com" target="_blank" class="centered">FreeSWITCH.com</a>
 </div>
 </div>
 <footer class="row"><div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2"><p style="text-align: justify;"><a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备17017005号-2</a>
     &nbsp;
-    版权所有 &copy; 烟台小樱桃网络科技有限公司 2019-2021 邮箱：info@x-y-t.cn</p></div></footer>
+    Copyright &copy; 2019-2021 Yantai XiaoYinTal Network Technology Co., Ltd. Email: info@x-y-t.cn</p></div></footer>
 
     <script>
         var _hmt = _hmt || [];
