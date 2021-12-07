@@ -1,8 +1,9 @@
 # RTS = Real-Time Solutions = [RTS.cn](http://rts.cn)
 
-Welcome
+Welcome. Talk to us on [Discussions](https://github.com/rts-cn/rts/discussions) .
 
-欢迎
+欢迎来到RTS社区，请到[Discussions](https://github.com/rts-cn/rts/discussions)与我们交流。
+
 
 歡迎
 
