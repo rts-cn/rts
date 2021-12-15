@@ -60,6 +60,10 @@
 		color: #fff;
 	}
 
+	span.break {
+		display: none;
+	}
+
 	@media only screen and (max-width: 720px) {
 		.xindex-splash-image {
 			background-image:url("./rts2021/rts2021-banner-vertical.png");
@@ -71,9 +75,13 @@
 		}
 
 		.rtscon {
-			top: 60vh;
+			top: 50vh;
 			/* /* left: 0px; */
 			/* padding-top: 40vh; */
+		}
+
+		span.break {
+			display: inline;
 		}
 
 		.nothing {
@@ -118,14 +126,15 @@
 	<div class="xsplash rtscon row padded">
 		<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
 			<span style="font-size: 44px">RTSCon 2021</span>
-			<span style="font-size: 16px;">
-			<br/>
+			<div style="font-size: 16px;">
 			源于开发者，用于开发者
+			</div>
 			<br/>
-			<br/>
-			第二届RTSCon线上技术交流会 2021年12月26日 09:00-18:00
-			<br/>
-		</span>
+			<div>
+				第二届RTSCon线上技术交流会
+				<span class="break"/><br/></span>
+				2021年12月26日 09:00-18:00
+			</div>
 		<a class="button abutton" style="padding-left: 60px;padding-right: 60px;" href="https://jinshuju.net/f/BawjFQ">立即报名</a>
 		</div>
 	</div>
