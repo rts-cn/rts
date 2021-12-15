@@ -1,0 +1,430 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700|Poppins:400,400i,500,700,700i&amp;subset=latin-ext" rel="stylesheet">
+<link rel="stylesheet" href="./style.min.css">
+<title>RTSCon2021 - 实时解决方案年度技术峰会</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="RTS RTS-CN 实时通信解决方案 FreeSWITCH" />
+<meta name="description" content="RTS是一个实时通信解决方案，以FreeSWITCH开源技术为主，配合支持Kamailio、WebRTC等技术，支持企业通信、呼叫中心、视频会议等。"/>
+<meta name="author" content="Seven Du">
+<meta property="og:title" content="RTSCon2021">
+<meta property="og:description" content="RTSCon是一个实时通信解决方案，以FreeSWITCH开源技术为主，配合支持Kamailio、WebRTC等技术，支持企业通信、呼叫中心、视频会议等。" />
+<meta property="og:type" content="website" />
+<!-- <meta property="og:image" content="page_thumb.png"> -->
+<meta property="og:url" content="http://rts.cn">
+<link rel="icon" type="image/png" href="img/rts.png">
+<style>
+	.company {padding-left: 10px; color: #666; font-size: 0.8em;}
+	table.long {max-height: 1000px;}
+</style>
+</head>
+<body>
+<header class="row sticky">
+<span class="col-md-1 col-lg-2"></span>
+<a class="logo col-sm-3 col-md" href='/'>RTSCon</a>
+<a class="button col-sm col-md" href="#agenda">
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height: 20px; vertical-align: text-top;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+<span>&nbsp;日程</span></a>
+<a class="button col-sm col-md" href="#presenter">
+	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="24" height="24" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024" style="height: 20px; vertical-align: text-top;"><path d="M858.5 763.6a374 374 0 0 0-80.6-119.5a375.63 375.63 0 0 0-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1c-.4.2-.8.3-1.2.5c-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 0 0-80.6 119.5A371.7 371.7 0 0 0 136 901.8a8 8 0 0 0 8 8.2h60c4.4 0 7.9-3.5 8-7.8c2-77.2 33-149.5 87.8-204.3c56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 0 0 8-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z" fill="currentColor"/></svg>
+<span>&nbsp;讲师</span></a>
+<a class="button col-sm col-md" href="https://jinshuju.net/f/BawjFQ" target="_blank">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height: 20px; vertical-align: text-top;"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg>
+<span>&nbsp;报名</span></a>
+<span class="col-md-1 col-lg-2"></span>
+</header>
+<div class="row padded">
+	<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+	<!-- <img src="./tailored.svg" class="feature-image"> -->
+	<h2 class="feature-header">RTSCon 2021</h2><br>
+	<p>
+		RTSCon的前身是FreeSWITCH开发者沙龙。FreeSWITCH开发者沙龙从2012年起每年一届，算起来，今年应该是第10届。
+	</p>
+	<p>
+		FreeSWITCH开发者沙龙以FreeSWITCH为中心，交流音视频解决方案，多年来，得到了众多开发者的支持。随着时代的发展，生态建设越来越重要，开源也越来越深入人心，因此，我们更名为RTSCon，希望团结更多的生态伙伴，如Kamailio、OpenSIPS、WebRTC、RTC、直播、Docker、云原生、物联网、国产化、元宇宙、5G新发展及边缘计算等，共同把开源实时通信的应用场景落地并发扬光大。当然，我们虽以开源为主，但也欢迎闭源的产品和解决方案。毕竟，只要对行业、对生态有所贡献，都是好猫。
+	</p>
+	<br/>
+	<p style="text-align:center">
+		第二届RTSCon线上技术交流会将于2021年12月26日9:00-18:00举行，<a href="https://jinshuju.net/f/BawjFQ">立即报名</a>或<a href="https://mp.weixin.qq.com/s?__biz=MjM5MzIwMzExMg==&mid=2664616259&idx=1&sn=a0e76e00fbb19290bc9bffce7dd3818c&chksm=bdbce7848acb6e92afe7a2fb929ad5749aacc61e618299acdafc6db94d0450105cf58eff7d85&mpshare=1&scene=1&srcid=1125KRfkLve3t7sZA67sv9vE&sharer_sharetime=1637823373680&sharer_shareid=dd2204b15ec86ce2306ce8926e31179d&version=3.1.20.90367&platform=mac#rd">查看更多说明</a>。
+		<br />
+		<br />
+		查看<a href="http://www.freeswitch.org.cn/fscnds/index.html">往届沙龙回顾</a>
+		<a name="agenda"></a>
+	</p>
+	</div>
+	</div>
+<div class="row padded alt-back">
+<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+<!-- <img src="./responsive.svg" class="feature-image"> -->
+<h2 class="feature-header">日程</h2><br>
+<div style="text-align:center">
+2021年12月26日 09:00-18:00
+<br/>
+本次线上活动将使用腾讯会议，具体会议室信息将在开会前一天公布。
+<br/>
+<br/>
+INVITE ...
+<br/>
+... 100 Trying
+<br/>
+... 180 Ringing
+<br/>
+... 200 OK
+<br/>
+ACK ...
+</div>
+<p>
+	<table class="striped long">
+		<!-- <caption>上午</caption> -->
+		<thead>
+		  <tr>
+			<th>时间</th>
+			<th>主题</th>
+			<th>姓名</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+			<td data-label="时间">09:00-09:30</td>
+			<td data-label="主题">RTS和FreeSWITCH</td>
+			<td data-label="姓名">杜金房<span class='company'>烟台小樱桃</span></td>
+		  </tr>
+		  <tr>
+			<td data-label="时间">09:30-10:10</td>
+			<td data-label="主题">RTC的五个趋势</td>
+			<td data-label="姓名">包研<span class='company'>LiveVideoStack</span></td>
+		  </tr>
+		  <tr>
+			<td data-label="时间">10:10-10:50</td>
+			<td data-label="主题">中移在线呼叫平台</td>
+			<td data-label="姓名">王文敏<span class='company'>中移在线</span></td>
+		  </tr>
+		  <tr>
+			<td data-label="时间">10:50-11:30</td>
+			<td data-label="主题">Deepin与你同行</td>
+			<td data-label="姓名">管威<span class='company'>统信软件</span></td>
+		  </tr>
+		  <tr>
+			<td data-label="时间">11:30-12:10</td>
+			<td data-label="主题">RTC技术在贝壳找房呼叫中心的演进2</td>
+			<td data-label="姓名">安海波<span class='company'>贝壳找房</span></td>
+		  </tr>
+		</tbody>
+	  </table>
+</p>
+<p style="text-align:center">
+	reINVITE (Hold) ...
+	<br/>
+	...200 OK
+	<br/>
+	ACK ...
+	<hr/>
+	<div style="text-align:center">
+		reINVITE (unHold) ...
+		<br/>
+		...200 OK
+		<br/>
+		ACK ...
+	</div>
+	<!-- <h2 class="feature-header">下午</h2><br> -->
+</p>
+<p>
+	<table class="striped long">
+		<!-- <caption>下午</caption> -->
+		<thead>
+		  <tr>
+			<th>时间</th>
+			<th>主题</th>
+			<th>姓名</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+			<td data-label="时间">13:30-14:10</td>
+			<td data-label="主题">开源与闭源商业模式的发展思考</td>
+			<td data-label="姓名">萧绍聪<span class='company'>巨杉</span></td>
+		  </tr>
+		  <tr>
+			<td data-label="时间">14:10-14:50</td>
+			<td data-label="主题">为开源付费，赢得竞争能力！</td>
+			<td data-label="姓名">适兕<span class='company'>开源之商</span></td>
+		  </tr>
+		  <tr>
+			<td data-label="时间">14:50-15:30</td>
+			<td data-label="主题">基于mediasoup的开源全平台WebRTC服务集群</td>
+			<td data-label="姓名">闫华<span class='company'>速航云</span></td>
+		  </tr>
+		  <tr>
+			<td data-label="时间">15:30-16:10</td>
+			<td data-label="主题">WebRTC未来发展与学习方法</td>
+			<td data-label="姓名">李超<span class='company'>北京音视跳动</span></td>
+		  </tr>
+		  <tr>
+			<td data-label="时间">16:10-16:50</td>
+			<td data-label="主题">基于深度学习的感知视频编码</td>
+			<td data-label="姓名">柴小燕<span class='company'>声网Agora</span></td>
+		  </tr>
+		  <tr>
+			<td data-label="时间">16:50-17:30</td>
+			<td data-label="主题">待定</td>
+			<td data-label="姓名">待定<span class='company'>美团</span></td>
+		  </tr>
+		  <tr>
+			<td data-label="时间">17:30-18:10</td>
+			<td data-label="主题">待定</td>
+			<td data-label="姓名">待定<span class='company'>腾讯</span></td>
+		  </tr>
+		  <tr>
+			<td data-label="时间">18:10-18:30</td>
+			<td data-label="主题">抽奖</td>
+			<td data-label="姓名">RTS<span class='company'>主办方</span></td>
+		  </tr>
+		</tbody>
+	  </table>
+	  <p style='text-align:center'>
+		BYE ...
+		<br/>
+		... 200 OK
+		</p>
+	  <a name="presenter"></a>
+	</p>
+</div>
+</div>
+
+<div class="row padded">
+	<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+	<!-- <img src="./responsive.svg" class="feature-image"> -->
+	<h2 class="feature-header">讲师简介</h2><br>
+	<div class="row">
+		<div class="col-sm-12 col-md-3 col-lg-3">
+			<img src="rts2021/dujinfang.png" class="section media">
+		</div>
+		<div class="col-sm-12 col-md-9 col-lg-9">
+			<h2>杜金房</h2>
+			<p style="color:#666">小樱桃科技创始人，技术总监</p>
+			<p>北京信悦通科技有限公司、烟台小樱桃网络科技有限公司创始人 & CTO，RTS社区创始人，FreeSWITCH中文社区创始人，FreeSWITCH开源项目核心Committer，《FreeSWITCH权威指南》作者，FreeSWITCH培训讲师，开源信徒和布道者。
+			<p>演讲主题：<strong>FreeSWITCH开源商业化实践与思考</strong></p>
+			<p>
+				<ul>
+				<li>说说RTS及FreeSWITCH社区</li>
+				<li>FreeSWITCH是开源的实时音视频通信系统，在互联网热词如大数据、人工智能、甚至元宇宙的洪流中，它似乎有些低调，然而，在呼叫中心、跟运营商相关的通信领域，它是神一样的存在。</li>
+				<li>
+				从2007年底开始接触FreeSWITCH，慢慢地从提交Bug报告、提交补丁，到成为FreeSWITCH核心Committer，14年提交15万行代码，是怎样一种体验？
+				</li>
+				<li>
+				从FreeSWITCH技术博客到人手一本的《FreeSWITCH权威指南》，这本书给我带来了什么？
+				</li>
+				<li>
+					从开源布道，到拿到第一笔咨询费，到商业化技术支持和商业化的产品服务，都走过哪些弯路？
+				</li>
+				<li>
+				最近几年，开源倍受关注，开源到底是什么？
+				</li>
+				<li>
+					未来可期，开源的未来都有什么？
+				</li>
+				</ul>
+			</p>
+			<br/>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12 col-md-3 col-lg-3">
+			<img src="rts2021/baoyan.png" class="section media">
+		</div>
+		<div class="col-sm-12 col-md-9 col-lg-9">
+			<h2>包研</h2>
+			<p style="color:#666">LiveVideoStack联合创始人</p>
+			<p>LiveVideoStack是专注在音视频领域的技术社区媒体，成立于2017年初，通过LiveVideoStackCon等技术大会、技术培训、高质量技术内容及咨询服务，推动相关开源项目与最佳实践普及和传播，帮助技术人成长，解决企业发展中的技术难点。
+				<p>演讲主题：<strong>RTC的五个趋势</strong></p>
+				<p>从一个行业观察者的角度，粗浅的分享观察到的现象。</p>
+			</p>
+			<br/>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12 col-md-3 col-lg-3">
+			<img src="rts2021/wangwenmin.png" class="section media" style="width:100%">
+		</div>
+		<div class="col-sm-12 col-md-9 col-lg-9">
+			<h2>王文敏</h2>
+			<p style="color:#666">中移在线高级专家</p>
+			<p>18年的通信相关产品开发经验，擅长通信信令、呼叫中心、即时通信、大数据等，目前任职中移在线服务有限公司架构师、高级专家。</p>
+				<p>演讲主题：<strong>中移在线呼叫平台</strong></p>
+				<p>中移在线自研呼叫平台的发展历程、核心技术、多级分布式系统架构和新一代客服交互形态瞻望，其中重点介绍基于通信网的5G视频客服实现及业务形态。
+				</p>
+			<br/>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12 col-md-3 col-lg-3">
+			<img src="rts2021/guanwei.png" class="section media" style="width:100%">
+		</div>
+		<div class="col-sm-12 col-md-9 col-lg-9">
+			<h2>管威</h2>
+			<p style="color:#666">统信软件项目经理</p>
+			<p>PHP、C#、C++研发工程师，目前就职于统信软件负责Deepin社区项目管理、对外交流工作。</p>
+				<p>演讲主题：<strong>Deepin与你同行</strong></p>
+				<p>Deepin操作系统的前世今生、社区开源介绍等</p>
+			<br/>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12 col-md-3 col-lg-3">
+			<img src="rts2021/anhaibo.png" class="section media" style="width:100%">
+		</div>
+		<div class="col-sm-12 col-md-9 col-lg-9">
+			<h2>安海波</h2>
+			<p style="color:#666">贝壳呼叫中心系统架构师</p>
+			<p>多年来一直致力于呼叫中心领域相关的技术研发与实施，曾工作于电信盈科，Avaya，联想等企业，目前服务于贝壳找房(北京)科技有限公司，从事呼叫中心技术架构等工作。</p>
+				<p>演讲主题：<strong>RTC技术在贝壳找房呼叫中心的演进2</strong></p>
+				<p><ul>
+					<li>1、贝壳找房呼叫中心应用场景介绍；</li>
+					<li>2、RTC技术的需求；</li>
+					<li>3、RTC与PSTN融合及优化。</li>
+				</ul>
+				</p>
+			<br/>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12 col-md-3 col-lg-3">
+			<img src="rts2021/xiaoshaocong.png" class="section media">
+		</div>
+		<div class="col-sm-12 col-md-9 col-lg-9">
+			<h2>萧少聪</h2>
+			<p style="color:#666">巨杉资深总监</p>
+			<p>负责巨杉公司产品及技术生态运营工作，连接上下游客户及合作伙伴生态，为巨杉公司建立万人技术社区。系中国电子商会数据资源服务创新专业委员会特聘行业专家，拥有近20年IT产品及社区建设经验，涵盖分布式数据库、操作系统、云计算等领域。参编著作包括：《Linux系统案例精解》、《深入理解大数据：大数据处理与编程实践》、《SequoiaDB分布式数据库权威指南》。</p>
+				<p>演讲主题：<strong>开源与闭源商业模式的发展思考</strong></p>
+				<p>迈进2020年，开源被极度推崇，成为了所有软件公司所向往的模式。然而，我则在这一年回到了闭源的商业软件公司。本次分享希望从我自己的经历，分享开源与闭源两种商业模式的运作理念。</p>
+			<br/>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-sm-12 col-md-3 col-lg-3">
+			<img src="rts2021/kuosi.png" class="section media">
+		</div>
+		<div class="col-sm-12 col-md-9 col-lg-9">
+			<h2>适兕</h2>
+			<p style="color:#666">「开源之道」主创</p>
+			<p>作者，「开源之道」主创。Linux基金会 APAC 开源布道者，Apache Local Community Beijing 成员，开源社执委会教育组成员。2020年被思否和开源社评为“中国开源先锋33人”。</p>
+				<p>演讲主题：<strong>为开源付费，赢得竞争能力！</strong></p>
+				<p>现实当中我们会遇到工厂排污染与附近居民，牧主与农民的边界问题而采取各种各样的解决办法，我们常常会以为毋需付费（广义的付费：除支付现金之外的如参与开发、提供资源、捐赠、推广等）的使用开源软件是一种最大利益的计算，然而真实的情况是：这其实比较非理性的行为，往往还非常吃亏。「开源之道」主创、发现开源三部曲作者，适兕，就为大家算一算这笔账。</p>
+			<br/>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12 col-md-3 col-lg-3">
+			<img src="rts2021/yanhua.png" class="section media">
+		</div>
+		<div class="col-sm-12 col-md-9 col-lg-9">
+			<h2>闫华</h2>
+			<p style="color:#666">速航云总经理</p>
+			<p>速航云创始人&CEO，本科北航毕业，北京邮电大学硕士毕业，主要研究方向为即时音视频通信技术，十多年的音视频服务端和客户端开发经验，精通掌握多种音视频协议如SIP、H323、GB28181、RTMP、RSTSP、WEBRTC协议，视频编解码如H264,H265,VP8,VP9等编码技术，G711、AAC、OPUS等音频编码技术，精通C/C++、Golang、ReactJS、Node.JS语言和框架，具有多年的跨Linux/Windows/Mac/Anroid/iOS平台系统架构设计及软件研发经验。尤其对国产化麒麟操作系统及飞腾CPU的音视频通信软件的适配使用有丰富的经验。多年的SIP和WebRTC视频会议客户端和服务器端SFU开发经验。</p>
+			<p>演讲内容：<strong>基于mediasoup的开源全平台WebRTC服务集群</strong></p>
+			<p>本次演讲主要描述了适合于传统行业人员简单转型接入WebRTC SFU方案的全C++平台解决方案，本方案是一套免费开源的基于mediasoup打造的一款支持嵌入式编译，集成环境VS2019和XCode开发调试的SFU调度集群系统。讲解主要内容包括：<ul>
+				<li>1、mediasoup的全平台c++版本实现；</li>
+				<li>2、mediasoup的sfu架构实现；</li>
+				<li>3、mediasoup的服务器集群调度实现；</li>
+				<li>4、实际应用场景案例讲解。</li>
+				</ul>
+			</p>
+			<br/>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12 col-md-3 col-lg-3">
+			<img src="rts2021/lichao.png" class="section media">
+		</div>
+		<div class="col-sm-12 col-md-9 col-lg-9">
+			<h2>李超</h2>
+			<p style="color:#666">北京音视跳动科技有限公司-首席架构师</p>
+			<p>北京音视跳动科技有限公司首席架构师；《WebRTC音视频实时互动技术--原理、实战与源码分析》一书作者；声网开发者社区 MVP；拥有10多年的音视频实时互动直播研发经验，多年的团队管理经验。参加并设计了多个高负载，大并发服务器架构。曾经在全时云会议担任“Tang”平台研发经理。带领团队研发自主知识产权的全时音视频会议平台。该平台可以同时并发 10000 场会议，每场可以支持上1000人实时互动。2015年底加入跟谁学团队，担任直播研发高级经理，带领团队研发在线教育直播平台，同一教室内可支持上万人。随后，先后任职沪江网高级架构师，以及新东方音视频技术专家。</p>
+			<p>演讲主题：<strong>WebRTC未来发展与学习方法</strong></p>
+			<p>聊一下WebRTC的现状；WebRTC未来发展，以及该如何更有效的学习WebRTC。</p>
+			<br/>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12 col-md-3 col-lg-3">
+			<img src="rts2021/chaixiaoyan.png" class="section media">
+		</div>
+		<div class="col-sm-12 col-md-9 col-lg-9">
+			<h2>柴小燕</h2>
+			<p style="color:#666">声网Agora算法工程师</p>
+			<p>2019年毕业于西安电子科技大学，通信工程学院硕士，主要研究视频编码。毕业后就职于声网视频算法组，主要工作与视频编码相关。参与过基于深度学习的感知视频编码，Agora自研H264编码器，SCC工具复杂度优化等项目的研究。对视频编解码有着非常浓厚的兴趣，希望能够在此领域上收获更多知识和乐趣。</p>
+			<p>演讲主题：<strong>基于深度学习的感知视频编码</strong></p>
+			<p>该项目主要通过深度学习的方法，去除视频中人眼不可感知的信息，来提高视频的压缩效率。将深度学习与感知编码相结合，使其能灵活的与各种编码器相结合。在保持主观效果不变的情况下，可节省10%-30%不等的编码码率。且该项目的网络模型非常小，能实时应用于移动端。分享大纲：<ul>
+				<li>1、感知编码的原理；</li>
+				<li>2、深度学习与感知编码结合的实践；</li>
+				<li>3、结果展示。</li>
+				</ul>
+			</p>
+			<br/>
+		</div>
+	</div>
+
+
+</div>
+</div>
+
+<div class="row padded primary-section">
+<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+<h2 class="feature-header">关于RTS.cn</h2><br>
+<p style="text-align:center;">
+	RTS的全称是Real-Time Solutions，即实时解决方案。
+</p>
+<p style="text-align:center;">
+	我们喜欢开源软件的简洁优雅，也喜欢商业软件的庄严大气。我们在探索开源与商业的最佳结合，从方法论、思想意识，以及真正的代码实现等各个角度。欢迎加入我们。
+</p>
+<p style="text-align:center;">
+	RTS的前身是FreeSWITCH中文社区。随着时代的发展，我们做的事情远远超出了FreeSWITCH本身，因此，我们组建了RTS社区，旨在团结更多的生态伙伴，如Kamailio、OpenSIPS、WebRTC、直播、RTC、Docker、云原生、物联网、国产化、元宇宙、5G新发展及边缘计算等，共同把开源实时通信的应用场景落地并发扬光大。
+</p>
+<p style="text-align:center;"><a href="https://jinshuju.net/f/BawjFQ" target="_blank" class="button">立即报名参加RTSCon2021</a></p>
+<br/>
+<a href="/" target="_blank" class="centered">返回RTS.cn首页</a>
+</div>
+</div>
+
+<div class="row padded alt-back">
+	<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+	<!-- <img src="./tailored.svg" class="feature-image"> -->
+	<h2 class="feature-header">赞助商</h2><br>
+	<p style="text-align:center">
+		感谢各位赞助商倾情赞助！
+	</p>
+	</div>
+</div>
+
+<footer class="row"><div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+	<p style="text-align: justify;">
+		<a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备17017005号-2</a>
+		版权所有 &copy; 2019-2021 <a href="http://www.x-y-t.cn">烟台小樱桃网络科技有限公司</a> 邮箱：info@x-y-t.cn
+	</p>
+</div>
+</footer>
+	
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?16a7c8bfcfe44d006b8ad19c5273a286";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+		
+</body>
+</html>
