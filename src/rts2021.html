@@ -40,16 +40,16 @@
 
 	.rtscon .button {
 		font-size: 24px;
-		background-color: rgb(8, 35, 189);
-		/* background: rgb(2,0,36); */
-/* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
+		background: rgb(0,91,243);
+		background: linear-gradient(180deg, rgba(0,91,243,1) 0%, rgba(0,34,251,1) 100%);
 		color: #FFF;
 		margin-left: -2px;
 	}
 
 	.rtscon .button:hover {
-		background-color: lime;
-		color: #00f;
+		background: rgb(0,91,243);
+		background: linear-gradient(180deg, rgba(0,91,243,1) 0%, rgba(0,34,251,1) 100%);
+		color: #FFF;
 	}
 
 	.xsplash{
@@ -88,16 +88,20 @@
 <body>
 <header class="row sticky">
 <span class="col-md-1 col-lg-2"></span>
-<a class="logo col-sm-3 col-md" href='/'>RTSCon</a>
+<span class="logo col-sm-3 col-md" href='/'><span style="color:red">R</span><span style="color:green">T</span><span style="color:blue">S</span>Con</span>
+<a class="button col-sm col-md" href="/">
+	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="24" height="24" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024" style="height: 20px; vertical-align: text-top;"><path d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 0 0-44.4 0L77.5 505a63.9 63.9 0 0 0-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0 0 18.7-45.3c0-17-6.7-33.1-18.8-45.2zM568 868H456V664h112v204zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7l23.1 23.1L882 542.3h-96.1z" fill="currentColor"/></svg>
+<span>&nbsp;首页</span></a>
+
 <a class="button col-sm col-md" href="#agenda">
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height: 20px; vertical-align: text-top;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
 <span>&nbsp;日程</span></a>
 <a class="button col-sm col-md" href="#presenter">
 	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="24" height="24" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024" style="height: 20px; vertical-align: text-top;"><path d="M858.5 763.6a374 374 0 0 0-80.6-119.5a375.63 375.63 0 0 0-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1c-.4.2-.8.3-1.2.5c-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 0 0-80.6 119.5A371.7 371.7 0 0 0 136 901.8a8 8 0 0 0 8 8.2h60c4.4 0 7.9-3.5 8-7.8c2-77.2 33-149.5 87.8-204.3c56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 0 0 8-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z" fill="currentColor"/></svg>
 <span>&nbsp;讲师</span></a>
-<a class="button col-sm col-md" href="https://jinshuju.net/f/BawjFQ" target="_blank">
+<!-- <a class="button col-sm col-md" href="https://jinshuju.net/f/BawjFQ" target="_blank">
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height: 20px; vertical-align: text-top;"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg>
-<span>&nbsp;报名</span></a>
+<span>&nbsp;报名</span></a> -->
 <span class="col-md-1 col-lg-2"></span>
 </header>
 
@@ -116,8 +120,10 @@
 			<span style="font-size: 44px">RTSCon 2021</span>
 			<span style="font-size: 16px;">
 			<br/>
-			第二届RTSCon线上技术交流会 2021年12月26日 09:00-18:00
+			源于开发者，用于开发者
 			<br/>
+			<br/>
+			第二届RTSCon线上技术交流会 2021年12月26日 09:00-18:00
 			<br/>
 		</span>
 		<a class="button abutton" style="padding-left: 60px;padding-right: 60px;" href="https://jinshuju.net/f/BawjFQ">立即报名</a>
@@ -423,11 +429,11 @@ ACK ...
 		<div class="col-sm-12 col-md-9 col-lg-9">
 			<h2>闫华</h2>
 			<p style="color:#666">速航云总经理</p>
-			<p>速航云创始人&CEO，本科北航毕业，北京邮电大学硕士毕业，主要研究方向为即时音视频通信技术，十多年的音视频服务端和客户端开发经验，精通掌握多种音视频协议如SIP、H323、GB28181、RTMP、RSTSP、WEBRTC协议，视频编解码如H264,H265,VP8,VP9等编码技术，G711、AAC、OPUS等音频编码技术，精通C/C++、Golang、ReactJS、Node.JS语言和框架，具有多年的跨Linux/Windows/Mac/Anroid/iOS平台系统架构设计及软件研发经验。尤其对国产化麒麟操作系统及飞腾CPU的音视频通信软件的适配使用有丰富的经验。多年的SIP和WebRTC视频会议客户端和服务器端SFU开发经验。</p>
-			<p>演讲内容：<strong>基于mediasoup的开源全平台WebRTC服务集群</strong></p>
+			<p>速航云创始人&CEO，本科北航毕业，北京邮电大学硕士毕业，主要研究方向为即时音视频通信技术，十多年的音视频服务端和客户端开发经验，精通掌握多种音视频协议如SIP、H323、GB28181、RTMP、RSTSP、WebRTC协议，视频编解码如H264、H265、VP8、VP9等编码技术，G711、AAC、OPUS等音频编码技术，精通C/C++、Golang、ReactJS、Node.JS语言和框架，具有多年的跨Linux/Windows/Mac/Anroid/iOS平台系统架构设计及软件研发经验。尤其对国产化麒麟操作系统及飞腾CPU的音视频通信软件的适配使用有丰富的经验。多年的SIP和WebRTC视频会议客户端和服务器端SFU开发经验。</p>
+			<p>演讲主题：<strong>基于mediasoup的开源全平台WebRTC服务集群</strong></p>
 			<p>本次演讲主要描述了适合于传统行业人员简单转型接入WebRTC SFU方案的全C++平台解决方案，本方案是一套免费开源的基于mediasoup打造的一款支持嵌入式编译，集成环境VS2019和XCode开发调试的SFU调度集群系统。讲解主要内容包括：<ul>
-				<li>1、mediasoup的全平台c++版本实现；</li>
-				<li>2、mediasoup的sfu架构实现；</li>
+				<li>1、mediasoup的全平台C++版本实现；</li>
+				<li>2、mediasoup的SFU架构实现；</li>
 				<li>3、mediasoup的服务器集群调度实现；</li>
 				<li>4、实际应用场景案例讲解。</li>
 				</ul>
