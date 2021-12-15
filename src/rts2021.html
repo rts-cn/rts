@@ -18,6 +18,71 @@
 <style>
 	.company {padding-left: 10px; color: #666; font-size: 0.8em;}
 	table.long {max-height: 1000px;}
+	.xindex-splash {width: 100%; height:50vh}
+	.xindex-splash-image {
+		background-image:url("./rts2021/rts2021-banner.png");
+		background-position:center center;
+		background-repeat:no-repeat;
+		background-size:cover;
+		width:100%;
+		height:50%;
+		position:absolute
+	}
+
+	/* .xindex-splash-image:not(.no-filter){xfilter:blur(2px)} */
+
+	.rtscon {
+		/* top: -200px;
+		left: -200px; */
+		/* text-align: left; */
+		padding-top: 10vh !important;
+	}
+
+	.rtscon .button {
+		font-size: 24px;
+		background-color: rgb(8, 35, 189);
+		/* background: rgb(2,0,36); */
+/* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
+		color: #FFF;
+		margin-left: -2px;
+	}
+
+	.rtscon .button:hover {
+		background-color: lime;
+		color: #00f;
+	}
+
+	.xsplash{
+		margin:0;
+		position:absolute;
+		width:100%;
+		/* padding-top:40vh; */
+		color: #fff;
+	}
+
+	@media only screen and (max-width: 720px) {
+		.xindex-splash-image {
+			background-image:url("./rts2021/rts2021-banner-vertical.png");
+			height:96%;
+		}
+
+		.xsplash {
+			text-align:center;
+		}
+
+		.rtscon {
+			top: 60vh;
+			/* /* left: 0px; */
+			/* padding-top: 40vh; */
+		}
+
+		.nothing {
+			/* hack to prevent useful divs from being covered by flash image in vertical mode */
+			height: 48vh;
+		}
+	}
+}
+
 </style>
 </head>
 <body>
@@ -35,6 +100,34 @@
 <span>&nbsp;报名</span></a>
 <span class="col-md-1 col-lg-2"></span>
 </header>
+
+<!-- <div style="padding: 64px"></div> -->
+
+<!-- <div class="row">
+<div class="col col-sm-6-x"> -->
+<div class="xindex-splash">
+	<!-- <div class="xindex-splash-image no-filter"></div> -->
+	<div class="xindex-splash-image">
+	<!-- <img src="img/rts.png" width="64px"/> -->
+	</div>
+	<!-- <h1 class="splash"><img src="img/rts.png" width="64px"/></h1> -->
+	<div class="xsplash rtscon row padded">
+		<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+			<span style="font-size: 44px">RTSCon 2021</span>
+			<span style="font-size: 16px;">
+			<br/>
+			第二届RTSCon线上技术交流会 2021年12月26日 09:00-18:00
+			<br/>
+			<br/>
+		</span>
+		<a class="button abutton" style="padding-left: 60px;padding-right: 60px;" href="https://jinshuju.net/f/BawjFQ">立即报名</a>
+		</div>
+	</div>
+	</div>
+	<div class="nothing"></div>
+<!-- </div>
+</div> -->
+
 <div class="row padded">
 	<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
 	<!-- <img src="./tailored.svg" class="feature-image"> -->
