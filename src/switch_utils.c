@@ -1097,7 +1097,7 @@ SWITCH_DECLARE(switch_size_t) switch_b64_decode(const char *in, char *out, switc
 
   end:
 
-	op[ol+1] = '\0';
+	op[ol++] = '\0';
 
 	return ol;
 }
