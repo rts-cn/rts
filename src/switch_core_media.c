@@ -35,6 +35,7 @@
 #include <switch_stun.h>
 #include <switch_nat.h>
 #include "private/switch_core_pvt.h"
+#include "private/switch_apr_pvt.h"
 #include <switch_curl.h>
 #include <errno.h>
 #include <sofia-sip/sdp.h>

@@ -4950,7 +4950,7 @@ done:
 #define SHA256_LENGTH 32
 SWITCH_DECLARE(cJSON *) switch_jwt_verify(const char *secret, const char *token)
 {
-	bool ok = false;
+	int ok = 0;
 	cJSON *json = NULL;
 	cJSON *payload = NULL;
 	char *out = NULL;
