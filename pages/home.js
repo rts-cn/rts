@@ -32,7 +32,7 @@ export default function Home() {
               height="440"
               alt=""
               src="/images/bg.webp"
-              srcset="./images/bg@2x.webp"
+              srcSet="/images/bg@2x.webp"
             />
 
             <div className="absolute right-0 top-0 z-10 mt-[95px] pr-9 font-semibold md:mt-[31px]">
@@ -153,8 +153,8 @@ export default function Home() {
                   className="h-10 w-10"
                   width="40"
                   height="40"
-                  src="./images/fscn.png"
-                  srcset="./images/fscn@2x.png"
+                  src="/images/fscn.png"
+                  srcSet="/images/fscn@2x.png"
                   alt=""
                 />
               </div>
