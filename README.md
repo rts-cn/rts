@@ -1,48 +1,42 @@
-# RTS = Real-Time Solutions = [RTS.cn](http://rts.cn)
+# Xswitch 官网
 
-Welcome. Talk to us on [Discussions](https://github.com/rts-cn/rts/discussions) .
+[Xswitch 官网项目](https://xswitch.cn/)
 
-欢迎来到RTS社区，请到[Discussions](https://github.com/rts-cn/rts/discussions)与我们交流。
+## 运行项目
 
+```
+make setup
+make dev
+```
 
-歡迎
+打开浏览器在 `localhost:3000` 预览
 
-Bienvenue
+## 编译生产环境代码
 
-bienvenu
+```
+make setup (执行过一次可跳过)
+make release
+```
 
-ようこそ
+生产代码环境在 `./out` 文件夹
 
-어서 오십시오
+## 本地预览生产环境界面
 
-ברוך הבא
+```
+make setup (执行过一次可跳过)
+make release
+cd ./out
+python3 -m http.server 9000
+```
 
-gratissimum
+打开浏览器在 `localhost:9000` 预览
 
-benvenuta
+## 开发
 
-benvenuto
+本项目在此[模版](https://github.com/timlrx/tailwind-nextjs-starter-blog)基础上开发
 
-herzlich willkommen
+## 发布
 
-bienvenida
-
-bienvenido
-
-Please make a pull reqest to add your language.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-From 2020-02-20.
+```
+make install
+```
