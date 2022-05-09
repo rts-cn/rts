@@ -9,5 +9,5 @@ release:
 	@echo Production projects are in the ./out folder
 
 install:
-	echo upload to xswitch.cn
-	rsync -avz out/*  root@xswitch.cn:/var/www/xswitch/
+	echo upload to rts.cn
+	rsync --exclude=.DS_Store -rvz out/* root@rts.cn:/var/www/rts/
