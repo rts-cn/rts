@@ -70,13 +70,13 @@ export default function Home() {
               <Img2 />
 
               <p className="mt-5 text-sm leading-6 text-gray-500">{t('rts con title')}</p>
-
+              <br />
               <p className="pr-10 text-sm leading-6 text-gray-500">{t('rts con description')}</p>
 
               <div className="mt-4 flex">
                 <div>🧨</div>
                 <a
-                  href="https://mp.weixin.qq.com/s/_HVMKyKxXDgRsH53tvqnoQ"
+                  href="/rts2021.html"
                   target="_blank"
                   className="pl-1 text-[#FF652C] underline"
                   rel="noreferrer"

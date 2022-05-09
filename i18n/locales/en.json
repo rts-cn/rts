@@ -1,6 +1,6 @@
 {
-  "title": "RTS is all about VoIP and RTC.",
-  "subtitle": "RTS is Real-Time Solutions",
+  "title": "Real-Time Solutions",
+  "subtitle": "RTS is a community about VoIP and RTC.",
   "description": "RTS was from FreeSWITCH Chinese Community. Over the years, we are doing far beyond FreeSWITCH. Come and join us to talk Kamailio, OpenSIPS, WebRTC, Online Broadcasting, RTC, Docker, Cloud Native, Internet of Things, Metaverse, VoLTE, 5G NR and Edge Computing.",
   "subdescription": "We love opensource and commercial softwares, as long as they can communicate.",
   "rts con title": "RTSCon was known as FreeSWITCH Developer's Salon. FreeSWITCH Developer's Salon was an anual developer conference started from 2012.",
@@ -10,7 +10,7 @@
   "resource": " Resource",
   "rts resource subtitle": "Source Code and Docs",
   "discussions": " Discuss.",
-  "github discussions subtitle": "Come and talk with us.",
+  "github discussions subtitle": "Come and Talk with us.",
   "chinese community": "-CN",
   "freeswitch chinese community subtitle": "FreeSWITCH in Chinese",
   "email": "Email: ",
