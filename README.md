@@ -1,10 +1,10 @@
 # RTS = Real-Time Solutions
 
-Welcome
+Welcome! Talk to us on [Discussions](https://github.com/rts-cn/rts/discussions).
 
-欢迎
+欢迎，来[Discussions](https://github.com/rts-cn/rts/discussions)一起聊聊。
 
-歡迎
+歡迎，來[Discussions](https://github.com/rts-cn/rts/discussions)一起聊聊。
 
 Bienvenue
 
