@@ -45,3 +45,6 @@ Please make a pull reqest to add your language.
 
 
 From 2020-02-20.
+
+
+Check the [Awesome FreeSWITCH List](https://github.com/rts-cn/awesome-freeswitch)
