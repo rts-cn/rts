@@ -1,4 +1,12 @@
-# FreeSWITCH
+# RTS
+
+RTS 是一个实时音视频服务器，支持 SIP 和 WebRTC，详见[RTS文档](http://rts.cn/docs/)。
+
+---
+
+以下是FreeSWITCH原始的README.md文件内容，仅供参考。
+
+## FreeSWITCH
 
 FreeSWITCH is a Software Defined Telecom Stack enabling the digital transformation from proprietary telecom switches to a versatile software implementation that runs on any commodity hardware. From a Raspberry PI to a multi-core server, FreeSWITCH can unlock the telecommunications potential of any device. Combined with our hosted cloud platform, SignalWire, FreeSWITCH can interconnect with the outside world and scale to any size.
 
