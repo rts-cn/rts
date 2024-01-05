@@ -334,3 +334,10 @@ src/mod/endpoints/mod_sofia/test/sipp-based-tests
 src/mod/applications/mod_commands/test/test_interface_allowlist
 
 .DS_Store
+
+libs/libvpx/tools-arm64-linux-gcc.mk
+rts
+rtss
+tests/unit/switch_core_asr
+tests/unit/switch_rtp_pcap
+tests/unit/switch_sip
