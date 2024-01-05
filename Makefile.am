@@ -640,6 +640,9 @@ install-data-local:
 	 done
 	test -d $(DESTDIR)$(confdir) || $(MAKE) samples-conf
 	test -d $(DESTDIR)$(htdocsdir) || $(MAKE) samples-htdocs
+	test -f $(bindir)/rtss || cd $(bindir) && ln -sf freeswitch rtss
+	test -f $(bindir)/rts || cd $(bindir) && ln -sf fs_cli rts
+	test -f /usr/local/freeswitch || ln -sf /usr/local/freeswitch /usr/local/rts
 
 is-scm:
 	@if [ ! -d .git ] ; then \
@@ -828,4 +831,3 @@ support:
 	@cp support-d/.screenrc ~
 	@cp support-d/.bashrc ~
 	@test -f ~/.cc-mode-installed || sh support-d/install-cc-mode.sh && touch ~/.cc-mode-installed
-
