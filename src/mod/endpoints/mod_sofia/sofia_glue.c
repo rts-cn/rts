@@ -1273,11 +1273,8 @@ switch_status_t sofia_glue_do_invite(switch_core_session_t *session)
 		 * since all of them have been already taken care of in mod_sofia.c:sofia_outgoing_channel()
 		 */
 		if (tech_pvt->transport == SOFIA_TRANSPORT_UNKNOWN && zstr(tech_pvt->gateway_name)) {
-			if (dst && dst->route_uri) {
-				p = dst->route_uri;
-			} else {
-				p = url;
-			}
+
+			p = url;
 			if ((p = (char *) switch_stristr("port=", p))) {
 				p += 5;
 				tech_pvt->transport = sofia_glue_str2transport(p);
