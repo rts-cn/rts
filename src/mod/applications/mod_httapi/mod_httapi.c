@@ -37,6 +37,10 @@ SWITCH_MODULE_LOAD_FUNCTION(mod_httapi_load);
 SWITCH_MODULE_SHUTDOWN_FUNCTION(mod_httapi_shutdown);
 SWITCH_MODULE_DEFINITION(mod_httapi, mod_httapi_load, mod_httapi_shutdown, NULL);
 
+#ifndef _WIN32
+#define O_BINARY 0
+#endif
+
 typedef struct profile_perms_s {
 	switch_byte_t set_params;
 	switch_byte_t set_vars;
@@ -2374,8 +2378,9 @@ static char *load_cache_data(http_file_context_t *context, const char *url)
 	const char *ext = NULL;
 	char *dext = NULL, *p;
 	char digest[SWITCH_MD5_DIGEST_STRING_SIZE] = { 0 };
-	char meta_buffer[1024] = "";
+	char *meta_buffer = NULL;
 	int fd;
+	long bytes;
 
 	switch_md5_string(digest, (void *) url, strlen(url));
 
@@ -2395,33 +2400,51 @@ static char *load_cache_data(http_file_context_t *context, const char *url)
 		} else switch_safe_free(dext);
 	}
 
+	if (!zstr(ext)) {
+		switch_file_interface_t* file_interface = switch_loadable_module_get_file_interface(ext, NULL);
+		if (file_interface) {
+			UNPROTECT_INTERFACE(file_interface);
+		} else {
+			ext = NULL;
+		}
+	}
+
 	context->cache_file_base = switch_core_sprintf(context->pool, "%s%s%s", globals.cache_path, SWITCH_PATH_SEPARATOR, digest);
 	context->meta_file = switch_core_sprintf(context->pool, "%s%s%s.meta", globals.cache_path, SWITCH_PATH_SEPARATOR, digest);
 
 	if (switch_file_exists(context->meta_file, context->pool) == SWITCH_STATUS_SUCCESS && ((fd = open(context->meta_file, O_RDONLY, 0)) > -1)) {
-		if (read(fd, meta_buffer, sizeof(meta_buffer)) > 0) {
-			char *p;
+		bytes = lseek(fd, 0, SEEK_END);
+		lseek(fd, 0, SEEK_SET);
 
-			if ((p = strchr(meta_buffer, ':'))) {
-				*p++ = '\0';
-				if (context->expires != 1) {
-					context->expires = (time_t) atol(meta_buffer);
+		#ifndef CURL_MAX_INPUT_LENGTH
+		#define CURL_MAX_INPUT_LENGTH 10000000
+		#endif
+
+		if (bytes < CURL_MAX_INPUT_LENGTH && bytes > 0) {
+			meta_buffer = switch_core_alloc(context->pool, bytes + 1);
+			if ((bytes = read(fd, meta_buffer, bytes)) > 0) {
+				char *p;
+
+				if ((p = strchr(meta_buffer, ':'))) {
+					*p++ = '\0';
+					if (context->expires != 1) {
+						context->expires = (time_t) atol(meta_buffer);
+					}
+					context->metadata = switch_core_strdup(context->pool, p);
 				}
-				context->metadata = switch_core_strdup(context->pool, p);
-			}
 
-			if ((p = strrchr(context->metadata, ':'))) {
-				p++;
-				if (!zstr(p)) {
-					ext = p;
+				if ((p = strrchr(context->metadata, ':'))) {
+					p++;
+					if (!zstr(p)) {
+						ext = p;
+					}
 				}
 			}
-
 		}
 		close(fd);
 	}
 
-	context->cache_file = switch_core_sprintf(context->pool, "%s%s%s%s%s", globals.cache_path, SWITCH_PATH_SEPARATOR, digest, ext ? "." : "", ext ? ext : "");
+	context->cache_file = switch_core_sprintf(context->pool, "%s%s%s%s%s", globals.cache_path, SWITCH_PATH_SEPARATOR, digest, !zstr(ext) ? "." : "", !zstr(ext) ? ext : "");
 	switch_safe_free(dext);
 
 	return context->cache_file;
@@ -2473,6 +2496,7 @@ static switch_status_t fetch_cache_data(http_file_context_t *context, const char
 	client_t *client = NULL;
 	long code;
 	switch_status_t status = SWITCH_STATUS_FALSE;
+	switch_time_t down_time = switch_micro_time_now();
 	char *dup_creds = NULL, *dynamic_url = NULL, *use_url;
 	char *ua = NULL;
 	const char *profile_name = NULL;
@@ -2501,7 +2525,7 @@ static switch_status_t fetch_cache_data(http_file_context_t *context, const char
 
 	if (save_path) {
 		while(--tries && (client->fd == 0 || client->fd == -1)) {
-			client->fd = open(save_path, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR);
+			client->fd = open(save_path, O_CREAT | O_WRONLY | O_TRUNC | O_BINARY, S_IRUSR | S_IWUSR);
 		}
 
 		if (client->fd < 0) {
@@ -2660,7 +2684,7 @@ static switch_status_t fetch_cache_data(http_file_context_t *context, const char
 	switch(code) {
 	case 200:
 		if (save_path) {
-			switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_DEBUG, "caching: url:%s to %s (%" SWITCH_SIZE_T_FMT " bytes)\n", url, save_path, client->bytes);
+			switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_DEBUG, "caching: url:%s to %s (%" SWITCH_SIZE_T_FMT " bytes) elapsed:%" SWITCH_TIME_T_FMT "\n", url, save_path, client->bytes, switch_micro_time_now() - down_time);
 		}
 		status = SWITCH_STATUS_SUCCESS;
 		break;
@@ -2692,7 +2716,6 @@ static switch_status_t write_meta_file(http_file_context_t *context, const char 
 {
 	int fd;
 	switch_status_t status = SWITCH_STATUS_SUCCESS;
-	char write_data[1024];
 
 	if ((fd = open(context->meta_file, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR)) < 0) {
 		return SWITCH_STATUS_FALSE;
@@ -2703,6 +2726,7 @@ static switch_status_t write_meta_file(http_file_context_t *context, const char 
 		const char *cc;
 		const char *p;
 		int x;
+		char *write_data;
 
 		if (context->url_params) {
 			if ((cc = switch_event_get_header(context->url_params, "abs_cache_control"))) {
@@ -2739,14 +2763,18 @@ static switch_status_t write_meta_file(http_file_context_t *context, const char 
 				context->del_on_close = 1;
 			}
 		}
-
-		switch_snprintf(write_data, sizeof(write_data),
+        
+		write_data = switch_core_sprintf(context->pool,
 						"%" TIME_T_FMT ":%s",
 						switch_epoch_time_now(NULL) + ttl,
 						data);
 
-
-		status = write(fd, write_data, (int)strlen(write_data) + 1) > 0 ? SWITCH_STATUS_SUCCESS : SWITCH_STATUS_FALSE;
+		if (write_data) {
+			status =
+				write(fd, write_data, (int)strlen(write_data) + 1) > 0 ? SWITCH_STATUS_SUCCESS : SWITCH_STATUS_FALSE;
+		} else {
+			status = SWITCH_STATUS_FALSE;
+		}
 	}
 
 	close(fd);
