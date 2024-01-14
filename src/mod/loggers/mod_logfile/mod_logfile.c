@@ -296,18 +296,25 @@ static switch_status_t process_node(const switch_log_node_t *node, switch_log_le
 
 		if (ok) {
 			if (profile->log_uuid && !zstr(node->userdata)) {
-				char buf[2048];
-				char *dup = strdup(node->data);
-				char *lines[100];
-				int argc, i;
-
-				argc = switch_split(dup, '\n', lines);
-				for (i = 0; i < argc; i++) {
-					switch_snprintf(buf, sizeof(buf), "%s %s\n", node->userdata, lines[i]);
+				char buf[4096];
+				const char *b = node->data;
+				const char *e;
+				do  {
+					size_t l = 0;
+					e = strchr(b, '\n');
+					if (e) {
+						l = e - b;
+					} else {
+						l = strlen(b);
+					}
+					switch_snprintf(buf, sizeof(buf), "%s %.*s\n", node->userdata, (int)l, b);
 					mod_logfile_raw_write(profile, buf);
-				}
-
-				free(dup);
+					if (e) {
+						b = e + 1;
+					} else {
+						break;
+					}
+				} while (*b);
 
 			} else {
 				mod_logfile_raw_write(profile, node->data);
