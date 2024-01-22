@@ -297,6 +297,7 @@ library_include_HEADERS = \
 	src/include/switch_msrp.h \
 	src/include/switch_vpx.h \
 	src/include/switch_vad.h \
+	src/include/xswitch.h \
 	libs/libteletone/src/libteletone_detect.h \
 	libs/libteletone/src/libteletone_generate.h \
 	libs/libteletone/src/libteletone.h \
@@ -382,6 +383,7 @@ libfreeswitch_la_SOURCES = \
 	src/switch_msrp.c \
 	src/switch_vad.c \
 	src/switch_vpx.c \
+	src/xswitch.c \
 	libs/libteletone/src/libteletone_detect.c \
 	libs/libteletone/src/libteletone_generate.c \
 	libs/miniupnpc/miniwget.c \
@@ -640,6 +642,9 @@ install-data-local:
 	 done
 	test -d $(DESTDIR)$(confdir) || $(MAKE) samples-conf
 	test -d $(DESTDIR)$(htdocsdir) || $(MAKE) samples-htdocs
+	test -f $(bindir)/rtss || cd $(bindir) && ln -sf freeswitch rtss
+	test -f $(bindir)/rts || cd $(bindir) && ln -sf fs_cli rts
+	test -f /usr/local/freeswitch || ln -sf /usr/local/freeswitch /usr/local/rts
 
 is-scm:
 	@if [ ! -d .git ] ; then \
@@ -828,4 +833,3 @@ support:
 	@cp support-d/.screenrc ~
 	@cp support-d/.bashrc ~
 	@test -f ~/.cc-mode-installed || sh support-d/install-cc-mode.sh && touch ~/.cc-mode-installed
-
