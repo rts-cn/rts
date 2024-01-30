@@ -373,6 +373,7 @@ static inline char *switch_strchr_strict(const char *in, char find, const char *
 
 #define switch_arraylen(_a) (sizeof(_a) / sizeof(_a[0]))
 #define switch_split(_data, _delim, _array) switch_separate_string(_data, _delim, _array, switch_arraylen(_array))
+#define switch_split_cheap(_data, _delim, _array, _larray) switch_separate_string_cheap(_data, _delim, _array, _larray, switch_arraylen(_array))
 
 #define switch_is_valid_rate(_tmp) (_tmp == 8000 || _tmp == 12000 || _tmp == 16000 || _tmp == 24000 || _tmp == 32000 || _tmp == 11025 || _tmp == 22050 || _tmp == 44100 || _tmp == 48000)
 
@@ -1023,6 +1024,16 @@ SWITCH_DECLARE(switch_time_t) switch_str_time(const char *in);
 SWITCH_DECLARE(unsigned int) switch_separate_string(_In_ char *buf, char delim, _Post_count_(return) char **array, unsigned int arraylen);
 SWITCH_DECLARE(unsigned int) switch_separate_string_string(char *buf, char *delim, _Post_count_(return) char **array, unsigned int arraylen);
 
+/*!
+  \brief Separate a string into an array based on a character delimiter, no memory corruption!
+  \param buf the string to parse
+  \param delim the character delimiter
+  \param array the array to split the values into
+  \param larray the array that hold the lenth of each element
+  \param arraylen the max number of elements in the array
+  \return the number of elements added to the array
+*/
+SWITCH_DECLARE(unsigned int) switch_separate_string_cheap(_In_ const char *buf, char delim, _Post_count_(return) const char **array, _Post_count_(return) unsigned int larray[], unsigned int arraylen);
 
 SWITCH_DECLARE(char *) switch_strip_spaces(char *str, switch_bool_t dup);
 SWITCH_DECLARE(char *) switch_strip_whitespace(const char *str);

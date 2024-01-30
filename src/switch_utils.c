@@ -2876,6 +2876,140 @@ SWITCH_DECLARE(unsigned int) switch_separate_string(char *buf, char delim, char 
 	return (delim == ' ' ? separate_string_blank_delim(buf, array, arraylen) : separate_string_char_delim(buf, delim, array, arraylen));
 }
 
+/* Separate a string using a delimiter that is not a space */
+static unsigned int separate_string_char_delim_cheap(const char *buf, char delim, const char **array, unsigned int larray[], unsigned int arraylen)
+{
+	enum tokenizer_state {
+		START,
+		FIND_DELIM
+	} state = START;
+
+	unsigned int count = 0;
+	const char *ptr = buf;
+	int inside_quotes = 0;
+
+	while (*ptr && count < arraylen) {
+		switch (state) {
+		case START:
+			array[count] = ptr;
+			state = FIND_DELIM;
+			count++;
+			ptr++;
+			break;
+
+		case FIND_DELIM:
+			/* escaped characters are copied verbatim to the destination string */
+			if (*ptr == ESCAPE_META) {
+				++ptr;
+			} else if (*ptr == '\'' && (inside_quotes || strchr(ptr+1, '\''))) {
+				inside_quotes = (1 - inside_quotes);
+			} else if (*ptr == delim && !inside_quotes) {
+				larray[count - 1] = (unsigned int)(ptr - array[count - 1]);
+				state = START;
+			}
+			++ptr;
+			break;
+		}
+	}
+
+	larray[count - 1] = strlen(array[count - 1]);
+
+	/* strip quotes, escaped chars and leading / trailing spaces */
+
+	// for (i = 0; i < count; ++i) {
+	// 	array[i] = cleanup_separated_string(array[i], delim);
+	// }
+
+	return count;
+}
+
+/* Separate a string using a delimiter that is a space */
+static unsigned int separate_string_blank_delim_cheap(const char *buf, const char **array, unsigned int larray[], unsigned int arraylen)
+{
+	enum tokenizer_state {
+		START,
+		SKIP_INITIAL_SPACE,
+		FIND_DELIM,
+		SKIP_ENDING_SPACE
+	} state = START;
+
+	unsigned int count = 0;
+	const char *ptr = buf;
+	int inside_quotes = 0;
+	// unsigned int i;
+
+	while (*ptr && count < arraylen) {
+		switch (state) {
+		case START:
+			array[count++] = ptr;
+			state = SKIP_INITIAL_SPACE;
+			break;
+
+		case SKIP_INITIAL_SPACE:
+			if (*ptr == ' ') {
+				++ptr;
+			} else {
+				state = FIND_DELIM;
+			}
+			break;
+
+		case FIND_DELIM:
+			if (*ptr == ESCAPE_META) {
+				++ptr;
+			} else if (*ptr == '\'') {
+				inside_quotes = (1 - inside_quotes);
+			} else if (*ptr == ' ' && !inside_quotes) {
+				larray[count - 1] = (unsigned int)(ptr - array[count - 1]);
+				state = SKIP_ENDING_SPACE;
+			}
+			++ptr;
+			break;
+
+		case SKIP_ENDING_SPACE:
+			if (*ptr == ' ') {
+				++ptr;
+			} else {
+				state = START;
+			}
+			break;
+		}
+	}
+
+	larray[count] = strlen(array[count]);
+
+	/* strip quotes, escaped chars and leading / trailing spaces */
+
+	// for (i = 0; i < count; ++i) {
+	// 	array[i] = cleanup_separated_string(array[i], 0);
+	// }
+
+	return count;
+}
+
+
+SWITCH_DECLARE(unsigned int) switch_separate_string_cheap(const char *buf, char delim, const char **array, unsigned int larray[], unsigned int arraylen)
+{
+	if (!buf || !array || !arraylen) {
+		return 0;
+	}
+
+
+	if (*buf == '^' && *(buf+1) == '^') {
+		const char *p = buf + 2;
+
+		if (*p && *(p+1)) {
+			buf = p;
+			delim = *buf++;
+		}
+	}
+
+
+	memset(array, 0, arraylen * sizeof(*array));
+
+	return (delim == ' ' ? separate_string_blank_delim_cheap(buf, array, larray, arraylen) : separate_string_char_delim_cheap(buf, delim, array, larray, arraylen));
+}
+
+
 SWITCH_DECLARE(const char *) switch_cut_path(const char *in)
 {
 	const char *p, *ret = in;
