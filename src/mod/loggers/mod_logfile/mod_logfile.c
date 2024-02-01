@@ -299,11 +299,12 @@ static switch_status_t process_node(const switch_log_node_t *node, switch_log_le
 				char buf[2048];
 				char *dup = strdup(node->data);
 				char *lines[100];
+				unsigned int len_lines[100] = {0};
 				int argc, i;
 
-				argc = switch_split(dup, '\n', lines);
+				argc = switch_split_cheap(dup, '\n', (const char **)lines, len_lines);
 				for (i = 0; i < argc; i++) {
-					switch_snprintf(buf, sizeof(buf), "%s %s\n", node->userdata, lines[i]);
+					switch_snprintf(buf, sizeof(buf), "%s %.*s\n", node->userdata, len_lines[i], lines[i]);
 					mod_logfile_raw_write(profile, buf);
 				}
 
