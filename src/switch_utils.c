@@ -2882,29 +2882,25 @@ static unsigned int separate_string_char_delim_cheap(const char *buf, char delim
 	enum tokenizer_state {
 		START,
 		FIND_DELIM
-	} state = START;
+	} state = START, dstate = START;
 
 	unsigned int count = 0;
 	const char *ptr = buf;
-	int inside_quotes = 0;
 
 	while (*ptr && count < arraylen) {
 		switch (state) {
 		case START:
 			array[count] = ptr;
 			state = FIND_DELIM;
+			dstate = START;
 			count++;
 			ptr++;
 			break;
 
 		case FIND_DELIM:
-			/* escaped characters are copied verbatim to the destination string */
-			if (*ptr == ESCAPE_META) {
-				++ptr;
-			} else if (*ptr == '\'' && (inside_quotes || strchr(ptr+1, '\''))) {
-				inside_quotes = (1 - inside_quotes);
-			} else if (*ptr == delim && !inside_quotes) {
+			if (*ptr == delim) {
 				larray[count - 1] = (unsigned int)(ptr - array[count - 1]);
+				dstate = state;
 				state = START;
 			}
 			++ptr;
@@ -2912,7 +2908,7 @@ static unsigned int separate_string_char_delim_cheap(const char *buf, char delim
 		}
 	}
 
-	larray[count - 1] = strlen(array[count - 1]);
+	if (dstate == START) larray[count - 1] = strlen(array[count - 1]);
 
 	/* strip quotes, escaped chars and leading / trailing spaces */
 
@@ -2931,17 +2927,16 @@ static unsigned int separate_string_blank_delim_cheap(const char *buf, const cha
 		SKIP_INITIAL_SPACE,
 		FIND_DELIM,
 		SKIP_ENDING_SPACE
-	} state = START;
+	} state = START, dstate = START;
 
 	unsigned int count = 0;
 	const char *ptr = buf;
-	int inside_quotes = 0;
-	// unsigned int i;
 
 	while (*ptr && count < arraylen) {
 		switch (state) {
 		case START:
 			array[count++] = ptr;
+			dstate = START;
 			state = SKIP_INITIAL_SPACE;
 			break;
 
@@ -2954,12 +2949,9 @@ static unsigned int separate_string_blank_delim_cheap(const char *buf, const cha
 			break;
 
 		case FIND_DELIM:
-			if (*ptr == ESCAPE_META) {
-				++ptr;
-			} else if (*ptr == '\'') {
-				inside_quotes = (1 - inside_quotes);
-			} else if (*ptr == ' ' && !inside_quotes) {
+			if (*ptr == ' ') {
 				larray[count - 1] = (unsigned int)(ptr - array[count - 1]);
+				dstate = state;
 				state = SKIP_ENDING_SPACE;
 			}
 			++ptr;
@@ -2969,13 +2961,13 @@ static unsigned int separate_string_blank_delim_cheap(const char *buf, const cha
 			if (*ptr == ' ') {
 				++ptr;
 			} else {
+				dstate = state;
 				state = START;
 			}
 			break;
 		}
 	}
-
-	larray[count] = strlen(array[count]);
+	if (dstate == START) larray[count - 1] = strlen(array[count - 1]);
 
 	/* strip quotes, escaped chars and leading / trailing spaces */
 

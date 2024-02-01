@@ -93,7 +93,7 @@ FST_TEST_BEGIN(test_sanitize_number)
 }
 FST_TEST_END()
 
-FST_TEST_BEGIN(test_split_cheap)
+FST_TEST_BEGIN(test_split_cheap1)
 {
 	const char *str = "1234,5678,90123";
 	int argc;
@@ -102,6 +102,90 @@ FST_TEST_BEGIN(test_split_cheap)
 	int i;
 
 	argc = switch_split_cheap(str, ',', argv, largv);
+	fst_check_int_equals(argc, 3);
+	fst_check_int_equals(largv[0], 4);
+	fst_check_int_equals(largv[1], 4);
+	fst_check_int_equals(largv[2], 5);
+	fst_check_int_equals(largv[3], 0);
+	for (i = 0; i < argc; i++) {
+		printf("%.*s\n", largv[i], argv[i]);
+		switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_INFO, "%.*s\n", largv[i], argv[i]);
+	}
+}
+FST_TEST_END()
+
+FST_TEST_BEGIN(test_split_cheap2)
+{
+	const char *str = "1234,5678,90123,";
+	int argc;
+	const char *argv[4];
+	unsigned int largv[4] = {0};
+	int i;
+
+	argc = switch_split_cheap(str, ',', argv, largv);
+	fst_check_int_equals(argc, 3);
+	fst_check_int_equals(largv[0], 4);
+	fst_check_int_equals(largv[1], 4);
+	fst_check_int_equals(largv[2], 5);
+	fst_check_int_equals(largv[3], 0);
+	for (i = 0; i < argc; i++) {
+		printf("%.*s\n", largv[i], argv[i]);
+		switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_INFO, "%.*s\n", largv[i], argv[i]);
+	}
+}
+FST_TEST_END()
+
+FST_TEST_BEGIN(test_split_cheap3)
+{
+	const char *str = "1234 5678 90123";
+	int argc;
+	const char *argv[4];
+	unsigned int largv[4] = {0};
+	int i;
+
+	argc = switch_split_cheap(str, ' ', argv, largv);
+	fst_check_int_equals(argc, 3);
+	fst_check_int_equals(largv[0], 4);
+	fst_check_int_equals(largv[1], 4);
+	fst_check_int_equals(largv[2], 5);
+	fst_check_int_equals(largv[3], 0);
+	for (i = 0; i < argc; i++) {
+		printf("%.*s\n", largv[i], argv[i]);
+		switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_INFO, "%.*s\n", largv[i], argv[i]);
+	}
+}
+FST_TEST_END()
+
+FST_TEST_BEGIN(test_split_cheap4)
+{
+	const char *str = "1234 5678 90123 ";
+	int argc;
+	const char *argv[4];
+	unsigned int largv[4] = {0};
+	int i;
+
+	argc = switch_split_cheap(str, ' ', argv, largv);
+	fst_check_int_equals(argc, 3);
+	fst_check_int_equals(largv[0], 4);
+	fst_check_int_equals(largv[1], 4);
+	fst_check_int_equals(largv[2], 5);
+	fst_check_int_equals(largv[3], 0);
+	for (i = 0; i < argc; i++) {
+		printf("%.*s\n", largv[i], argv[i]);
+		switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_INFO, "%.*s\n", largv[i], argv[i]);
+	}
+}
+FST_TEST_END()
+
+FST_TEST_BEGIN(test_split_cheap5)
+{
+	const char *str = "1234 5678 90123     ";
+	int argc;
+	const char *argv[4];
+	unsigned int largv[4] = {0};
+	int i;
+
+	argc = switch_split_cheap(str, ' ', argv, largv);
 	fst_check_int_equals(argc, 3);
 	fst_check_int_equals(largv[0], 4);
 	fst_check_int_equals(largv[1], 4);
