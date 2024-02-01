@@ -2967,8 +2967,7 @@ static unsigned int separate_string_blank_delim_cheap(const char *buf, const cha
 			break;
 		}
 	}
-
-	if (dstate == START) larray[count] = strlen(array[count]);
+	if (dstate == START) larray[count - 1] = strlen(array[count - 1]);
 
 	/* strip quotes, escaped chars and leading / trailing spaces */
 
