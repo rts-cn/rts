@@ -1026,6 +1026,7 @@ SWITCH_DECLARE(unsigned int) switch_separate_string_string(char *buf, char *deli
 
 /*!
   \brief Separate a string into an array based on a character delimiter, no memory corruption!
+         DOSEN'T support removing quotes like what's in switch_separate_string()!
   \param buf the string to parse
   \param delim the character delimiter
   \param array the array to split the values into
