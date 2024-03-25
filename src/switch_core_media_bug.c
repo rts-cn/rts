@@ -400,7 +400,7 @@ SWITCH_DECLARE(switch_status_t) switch_core_media_bug_read(switch_media_bug_t *b
 			}
 		}
 		memcpy(frame->data, bug->tmp, bytes * 2);
-	} else {
+	} else if (wlen) {
 		for (x = 0; x < blen; x++) {
 			int32_t w = 0, r = 0, z = 0;
 
