@@ -1,4 +1,4 @@
-FROM xswitch.tencentcloudcr.com/xswitch/xswitch:bookworm as xswitch-build-bookworm
+FROM ccr.ccs.tencentyun.com/xswitch/xswitch:bookworm as xswitch-build-bookworm
 LABEL maintainer="Seven Du <dujinfang@x-y-t.cn>"
 SHELL ["/bin/bash", "-c"]
 
