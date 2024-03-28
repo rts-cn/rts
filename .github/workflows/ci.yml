@@ -23,7 +23,7 @@ jobs:
         name: Login to TCR
         uses: docker/login-action@v3
         with:
-          registry: xswitch.tencentcloudcr.com
+          registry: ccr.ccs.tencentyun.com
           username: ${{ secrets.DOCKER_LOGIN_USER }}
           password: ${{ secrets.DOCKER_LOGIN_PASSWORD }}
       -
@@ -34,4 +34,4 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           file: ./docker/rts/Dockerfile
-          tags: xswitch.tencentcloudcr.com/xswitch/rts:latest
+          tags: ccr.ccs.tencentyun.com/free/rts:latest
