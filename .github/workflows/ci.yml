@@ -35,3 +35,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           file: ./docker/rts/Dockerfile
           tags: ccr.ccs.tencentyun.com/free/rts:latest
+          build-args: |
+            BOT_TOKEN=${{ secrets.BOT_TOKEN }}
+            BOT_URL=${{ secrets.BOT_URL }}
