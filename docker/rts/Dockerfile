@@ -1,4 +1,6 @@
 FROM ccr.ccs.tencentyun.com/xswitch/xswitch:bookworm as xswitch-build-bookworm
+ARG BOT_URL
+ARG BOT_TOKEN
 LABEL maintainer="Seven Du <dujinfang@x-y-t.cn>"
 SHELL ["/bin/bash", "-c"]
 
@@ -8,9 +10,23 @@ RUN ls ./ && cp ./docker/rts/modules.conf ./
 ENV PKG_CONFIG_PATH=/usr/local/mrcp/lib/pkgconfig:/usr/local/freeswitch/lib/pkgconfig
 
 RUN ./bootstrap.sh && \
+  mkdir -p scan-build && \
   ./configure --enable-core-odbc-support && \
-  make -j $(nproc --all) && \
-  make install
+  scan-build -o ./scan-build/ make -j`nproc --all` |& tee ./scan-build-result.txt; \
+  exitstatus=${PIPESTATUS[0]} && \
+  if [ $exitstatus -eq 0 ]; then \
+    make -j $(nproc --all) && \
+    tar zcvf scan-build.tar.gz scan-build && \
+    result=$(curl -F 'media=@scan-build.tar.gz' -X POST "${BOT_URL}/cgi-bin/webhook/upload_media?key=${BOT_TOKEN}&type=file") && \
+    media_id=$(echo $result | grep -o '"media_id":"[^"]*' | awk -F'"' '{print $4}') && \
+    curl "${BOT_URL}/cgi-bin/webhook/send?key=${BOT_TOKEN}" -H 'Content-Type: application/json' -d "{\"msgtype\": \"file\",\"file\":{\"media_id\":\"${media_id}\"}}" && \
+    make install; \
+  else \
+    result=$(curl -F 'media=@scan-build-result.txt' -X POST "${BOT_URL}/cgi-bin/webhook/upload_media?key=${BOT_TOKEN}&type=file") && \
+    media_id=$(echo $result | grep -o '"media_id":"[^"]*' | awk -F'"' '{print $4}') && \
+    curl "${BOT_URL}/cgi-bin/webhook/send?key=${BOT_TOKEN}" -H 'Content-Type: application/json' -d "{\"msgtype\": \"file\",\"file\":{\"media_id\":\"${media_id}\"}}" && \
+    exit 1; \
+  fi
 
 ## release-base for bookworm
 FROM debian:bookworm-20230814-slim as bookworm-base
