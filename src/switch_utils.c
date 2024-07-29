@@ -5079,8 +5079,8 @@ SWITCH_DECLARE(int) switch_rand(void)
 
 	BCryptCloseAlgorithmProvider(hAlgorithm, 0);
 
-	/* Make sure we return from 0 to RAND_MAX */
-	return (random_number & 0x7FFF);
+	/* Make sure we return from 0 to SWITCH_RAND_MAX */
+	return (random_number & (SWITCH_RAND_MAX));
 #elif defined(__unix__) || defined(__APPLE__)
 	int random_fd = open("/dev/urandom", O_RDONLY);
 	ssize_t result;
@@ -5107,8 +5107,8 @@ SWITCH_DECLARE(int) switch_rand(void)
 	
 	close(random_fd);
 
-	/* Make sure we return from 0 to RAND_MAX */
-	return (random_number & 0x7FFF);
+	/* Make sure we return from 0 to SWITCH_RAND_MAX */
+	return (random_number & (SWITCH_RAND_MAX));
 #else
 	return rand();
 #endif
