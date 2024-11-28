@@ -4978,6 +4978,7 @@ SWITCH_DECLARE(cJSON *) switch_jwt_verify(const char *secret, const char *token)
 	dot++; // signature
 	out = (char *)switch_must_malloc(strlen(dot) + 1);
 	len = switch_b64_decode((const char *)dot, out, strlen(dot) + 1);
+	len--; // the len is always 1 byte more than the actual length
 	if (len != SHA256_LENGTH) goto end;
 	ok = !memcmp(out, signature, len);
 	free(out);
@@ -4989,7 +4990,7 @@ SWITCH_DECLARE(cJSON *) switch_jwt_verify(const char *secret, const char *token)
 		if (p) {
 			p++;
 			out = (char *)switch_must_malloc(strlen(p));
-			len = switch_b64_decode((const char *)p, out, strlen(p));
+			switch_b64_decode((const char *)p, out, strlen(p));
 			payload = cJSON_Parse(out);
 			free(out);
 			out = NULL;
