@@ -641,7 +641,7 @@ install-data-local:
 	test -d $(DESTDIR)$(htdocsdir) || $(MAKE) samples-htdocs
 	test -f $(bindir)/rtss || cd $(bindir) && ln -sf freeswitch rtss
 	test -f $(bindir)/rts || cd $(bindir) && ln -sf fs_cli rts
-	test -f /usr/local/freeswitch || ln -sf /usr/local/freeswitch /usr/local/rts
+	test -f /usr/local/rts || ln -sf /usr/local/freeswitch /usr/local/rts
 
 is-scm:
 	@if [ ! -d .git ] ; then \
