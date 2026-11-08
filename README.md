@@ -2,9 +2,15 @@
 
 RTS 是一个实时音视频服务器，支持 SIP 和 WebRTC，详见[RTS文档](http://rts.cn/docs/)。
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/chart?repos=rts-cn/rts&type=date&legend=top-left)](https://www.star-history.com/?repos=rts-cn%2Frts&type=date&legend=top-left)
+
 ---
 
 以下是FreeSWITCH原始的README.md文件内容，仅供参考。
+
+---
 
 ## FreeSWITCH
 
